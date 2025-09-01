@@ -2,7 +2,12 @@ function createOrder(amount, actions) {
   return actions.order.create({
     purchase_units: [{
       amount: {
-        value: amount
+        value: amount.toString()
+      },
+      breakdown: {
+        tax_total: {
+          value: (amount * 0.19).toString()
+        }
       }
     }],
     application_context: {
@@ -21,7 +26,7 @@ paypal.Buttons({
     label:  'paypal'
   },
   createOrder: function(_data, actions) {
-    return createOrder('40.00', actions);
+    return createOrder(40, actions);
   }
 }).render('#paypal-button-container-1');
 
@@ -33,7 +38,7 @@ paypal.Buttons({
     label:  'paypal'
   },
   createOrder: function(_data, actions) {
-    return createOrder('50.00', actions);
+    return createOrder(50, actions);
   },
   onApprove: function(_data, actions) {
     return actions.order.capture().then(function(orderData) {
