@@ -27,6 +27,9 @@ async function fetchProducts() {
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
 
+      buttonDiv = productDiv.querySelector('.paypal-button');
+      buttonDiv.id = `paypal-button-container-${product.id}`;
+
       productContainer.appendChild(productDiv);
     });
 
