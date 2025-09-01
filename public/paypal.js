@@ -4,5 +4,14 @@ paypal.Buttons({
     color:  'blue',
     shape:  'rect',
     label:  'paypal'
+  },
+  createOrder: function(_data, actions) {
+    return actions.order.create({
+      purchase_units: [{
+        amount: {
+          value: '40.00'
+        }
+      }]
+    });
   }
-}).render('#paypal-button-container');
+}).render('#paypal-button-container-1');
