@@ -12,14 +12,10 @@ paypal.Buttons({
           value: '40.00'
         }
       }],
-      payment_source: {
-        paypal: {
-            experience_context: {
-                brand_name: 'Rungploy',
-                locale: 'de-DE',
-                shipping_preference: 'NO_SHIPPING'
-            }
-        }
+      application_context: {
+        brand_name: 'Rungploy',
+        locale: 'de-DE',
+        shipping_preference: 'NO_SHIPPING'
       }
     });
   }
