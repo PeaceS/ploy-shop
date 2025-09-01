@@ -1,3 +1,0 @@
-/*
-Content-Security-Policy: default-src 'self'; script-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com 'unsafe-inline'; connect-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com; child-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com; frame-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com; img-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com data:; style-src 'self' *.paypal.com *.paypalobjects.com *.venmo.com 'unsafe-inline'; 
-Cross-Origin-Opener-Policy: same-origin-allow-popups;
