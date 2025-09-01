@@ -17,8 +17,7 @@ paypal.Buttons({
             experience_context: {
                 brand_name: 'Rungploy',
                 locale: 'de-DE',
-                shipping_preference: 'NO_SHIPPING',
-                user_action: 'PAY_NOW'
+                shipping_preference: 'NO_SHIPPING'
             }
         }
       }
