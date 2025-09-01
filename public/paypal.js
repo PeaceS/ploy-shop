@@ -11,7 +11,10 @@ paypal.Buttons({
         amount: {
           value: '40.00'
         }
-      }]
+      }],
+      application_context: {
+        shipping_preference: 'NO_SHIPPING'
+      }
     });
   }
 }).render('#paypal-button-container-1');
