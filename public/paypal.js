@@ -12,7 +12,7 @@ paypal.Buttons({
           value: '40.00'
         }
       }],
-      application_context: {
+      experience_context: {
         shipping_preference: 'NO_SHIPPING'
       }
     });
