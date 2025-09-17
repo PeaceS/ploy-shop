@@ -3,7 +3,7 @@ export async function onRequestGet(context) {
     const { env } = context;
 
     // Access the D1 binding via the name you defined (e.g., 'DB')
-    const { results } = await env.DB.prepare("SELECT * FROM stock").all();
+    const { results } = await env.DB.prepare("SELECT * FROM keychains").all();
 
     return new Response(JSON.stringify(results), {
       headers: {
@@ -11,6 +11,6 @@ export async function onRequestGet(context) {
       },
     });
   } catch (err) {
-    return new Response(`Error fetching stock: ${err.message}`, { status: 500 });
+    return new Response(`Error fetching keychains: ${err.message}`, { status: 500 });
   }
 }
