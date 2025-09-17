@@ -14,6 +14,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  justify-content: center;
 }
 .product,
 .banner {
@@ -28,6 +29,23 @@ body {
   padding: 25px;
   box-sizing: border-box;
   text-align: center;
+
+  &.large {
+    min-width: 100%;
+    padding: 0 25px;
+  }
+
+  @media screen and (max-width: 695px) {
+    &.large {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 696px) {
+    &.small {
+      display: none;
+    }
+  }
 
   img {
     width: 100%;
