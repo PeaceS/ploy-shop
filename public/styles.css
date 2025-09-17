@@ -29,6 +29,11 @@ body {
   box-sizing: border-box;
   text-align: center;
 
+  &.large {
+    min-width: 100%;
+    padding: 0 25px;
+  }
+
   @media screen and (max-width: 695px) {
     &.large {
       display: none;
