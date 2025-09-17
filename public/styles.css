@@ -7,6 +7,9 @@ body {
 .thai {
   font-family: "Noto Sans Thai", sans-serif;
 }
+.hide {
+  display: none;
+}
 #product-container {
   display: flex;
   flex-wrap: wrap;
@@ -26,9 +29,47 @@ body {
   box-sizing: border-box;
   text-align: center;
 
-  img {
-    width: 100%;
-    height: auto;
+  .slider-container {
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: 20px;
+
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+
+      &.show {
+        opacity: 1;
+      }
+    }
+
+    .slider-btn {
+      cursor: pointer;
+      border: none;
+      position: absolute;
+      width: 45px;
+      height: 45px;
+
+      background-color: rgba(0, 0, 0, 0.05);
+      background-image: url('images/icons/slider-button.svg');
+      background-size: 60%;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      &.previous-btn {
+        transform: translateY(-50%) rotateY(180deg);
+        left: 0;
+        top: 50%;
+      }
+
+      &.next-btn {
+        right: 0;
+      }
+    }
   }
 
   form {

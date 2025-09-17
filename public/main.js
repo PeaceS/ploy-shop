@@ -18,8 +18,9 @@ async function fetchProducts() {
       titleDiv.textContent = product.item;
 
       imageDiv = productDiv.querySelector('.product-image');
-      imageDiv.src = product.image_url;
+      imageDiv.src = `${product.image_directory}/1.jpg`;
       imageDiv.alt = product.item;
+      imageDiv.id = product.id
 
       descriptionDiv = productDiv.querySelector('.product-description');
       descriptionDiv.textContent = product.description;
@@ -27,10 +28,40 @@ async function fetchProducts() {
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
 
+      let currentImageIndex = 0;
+      const images = [
+        `${product.image_directory}/1.jpg`,
+        `${product.image_directory}/2.jpg`
+      ];
+
+      const updateImage = (id) => {
+        imageDiv = document.getElementById(id);
+        imageDiv.classList.remove('show');
+
+        // Wait for the fade-out to complete before changing the image source
+        setTimeout(() => {
+            imageDiv.src = images[currentImageIndex];
+            // Fade in the new image
+            imageDiv.classList.add('show');
+        }, 500); // This delay should match the CSS transition duration
+      };
+
+      prevBtn = productDiv.querySelector('.previous-btn');
+      prevBtn.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateImage(formatId(product.id));
+      });
+
+      nextBtn = productDiv.querySelector('.next-btn');
+      nextBtn.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateImage(formatId(product.id));
+      });
+
       productContainer.appendChild(productDiv);
     });
 
-    productContainer.removeChild(productTemplate);
+    productTemplate.classList.add('hide');
   } catch (error) {
     console.error('Failed to fetch products:', error);
   }
