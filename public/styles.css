@@ -35,7 +35,7 @@ body {
     }
   }
 
-  @media screen and (mix-width: 696px) {
+  @media screen and (min-width: 696px) {
     &.small {
       display: none;
     }
