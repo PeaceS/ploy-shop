@@ -49,13 +49,13 @@ async function fetchProducts() {
       prevBtn = productDiv.querySelector('.previous-btn');
       prevBtn.addEventListener('click', () => {
         currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        updateImage(formatId(product.id));
+        updateImage(product.id);
       });
 
       nextBtn = productDiv.querySelector('.next-btn');
       nextBtn.addEventListener('click', () => {
         currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateImage(formatId(product.id));
+        updateImage(product.id);
       });
 
       productContainer.appendChild(productDiv);
