@@ -29,6 +29,18 @@ body {
   box-sizing: border-box;
   text-align: center;
 
+  @media screen and (max-width: 695px) {
+    &.large {
+      display: none;
+    }
+  }
+
+  @media screen and (mix-width: 696px) {
+    &.small {
+      display: none;
+    }
+  }
+
   img {
     width: 100%;
     height: auto;
