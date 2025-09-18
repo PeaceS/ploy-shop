@@ -1,8 +1,18 @@
 async function soldFn(id) {
-  const response = await fetch(`/keychains/${id}`, { method: 'PUT' });
+  try {
+    const response = await fetch(`/keychains/${id}`, {
+      method: 'PUT',
+    });
 
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    window.location.reload();
+
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    alert('Failed to update stock. Please try again.');
   }
 };
 
