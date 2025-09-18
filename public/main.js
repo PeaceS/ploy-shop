@@ -10,9 +10,17 @@ async function fetchKeychainStock() {
     const stockContainer = document.getElementById('stock');
 
     keychains.forEach(keychain => {
-      const li = document.createElement('li');
-      li.textContent = `${keychain.item} - ${keychain.stock}`;
-      stockContainer.appendChild(li);
+      const row = document.createElement('tr');
+
+      const item = document.createElement('td');
+      item.textContent = keychain.item;
+      row.appendChild(item);
+
+      const stock = document.createElement('td');
+      stock.textContent = keychain.stock;
+      row.appendChild(stock);
+
+      stockContainer.appendChild(row);
     });
 
   } catch (error) {
