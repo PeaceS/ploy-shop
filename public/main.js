@@ -1,3 +1,11 @@
+async function soldFn(id) {
+  const response = await fetch(`/keychains/${id}`, { method: 'PUT' });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+};
+
 async function fetchKeychainStock() {
   try {
     const response = await fetch('/keychains');
@@ -27,6 +35,10 @@ async function fetchKeychainStock() {
       soldButton.classList.remove('hide');
       sold.appendChild(soldButton);
       row.appendChild(sold);
+
+      soldButton.addEventListener('click', () => {
+        soldFn(keychain.id);
+      });
 
       keychainStockContainer.appendChild(row);
     });
