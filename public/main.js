@@ -8,6 +8,7 @@ async function fetchKeychainStock() {
 
     const keychains = await response.json();
     const keychainStockContainer = document.getElementById('keychain');
+    const hiddenSoldButton = document.getElementById('sold-button');
 
     keychains.forEach(keychain => {
       const row = document.createElement('tr');
@@ -20,6 +21,12 @@ async function fetchKeychainStock() {
       stock.classList.add('stock');
       stock.textContent = keychain.stock;
       row.appendChild(stock);
+
+      const sold = document.createElement('td');
+      const soldButton = hiddenSoldButton.cloneNode(true)
+      soldButton.classList.remove('hide');
+      sold.appendChild(soldButton);
+      row.appendChild(sold);
 
       keychainStockContainer.appendChild(row);
     });
