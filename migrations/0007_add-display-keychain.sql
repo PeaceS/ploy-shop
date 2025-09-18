@@ -1,0 +1,3 @@
+-- Migration number: 0007 	 2025-09-18T08:55:21.281Z
+
+ALTER TABLE keychains ADD COLUMN display BOOLEAN NOT NULL DEFAULT TRUE;
