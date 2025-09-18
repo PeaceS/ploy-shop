@@ -7,7 +7,7 @@ async function fetchKeychainStock() {
     }
 
     const keychains = await response.json();
-    const stockContainer = document.getElementById('stock');
+    const keychainStockContainer = document.getElementById('keychain');
 
     keychains.forEach(keychain => {
       const row = document.createElement('tr');
@@ -21,7 +21,7 @@ async function fetchKeychainStock() {
       stock.textContent = keychain.stock;
       row.appendChild(stock);
 
-      stockContainer.appendChild(row);
+      keychainStockContainer.appendChild(row);
     });
 
   } catch (error) {

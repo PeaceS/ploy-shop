@@ -120,7 +120,7 @@ body {
   }
 }
 
-table#stock {
+table.stock {
   text-align: left;
 
   .stock {
