@@ -17,6 +17,7 @@ async function fetchKeychainStock() {
       row.appendChild(item);
 
       const stock = document.createElement('td');
+      stock.classList.add('stock');
       stock.textContent = keychain.stock;
       row.appendChild(stock);
 
