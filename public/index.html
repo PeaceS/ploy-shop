@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ARTMUC Autumn 2025</title>
+  <title>Admin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
@@ -11,32 +11,9 @@
   <script src="/main.js"></script>
 </head>
 <body>
-  <h1>Bubble Merchandises</h1>
+  <h1>Stock</h1>
 
-  <div id="product-container">
-    <div class="banner large">
-      <img src="images/ARTMUC_MAI25_Datum_Banner.jpg" />
-    </div>
-    <div class="banner small">
-      <img src="images/ARTMUC_MAI25_Datum_1080x1920.jpg" />
-    </div>
-    <div class="product" id="product-template">
-      <div class="slider-container">
-        <img class="product-image show" />
-        <button class="slider-btn previous-btn"></button>
-        <button class="slider-btn next-btn"></button>
-      </div>
-      <h3 class="product-title"></h3>
-      <p class="product-description"></p>
-      <div id="paypal-button-container-1"></div>
-
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="MZ36YKX95HERG" />
-        <span class="product-price"></span>
-        <span class="vat">(incl. 19% VAT)</span>
-      </form>
-    </div>
-  </div>
+  <ul id="stock">
+  </ul>
 </body>
 </html>
