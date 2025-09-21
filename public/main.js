@@ -127,6 +127,8 @@ function bindTheBondSearch() {
   });
 }
 
-fetchTheBondStock();
-fetchKeychainStock();
-bindTheBondSearch();
+document.addEventListener('DOMContentLoaded', function() {
+  fetchTheBondStock();
+  fetchKeychainStock();
+  bindTheBondSearch();
+});
