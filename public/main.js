@@ -91,7 +91,6 @@ async function fetchTheBondStock(id) {
         const soldButton = hiddenSoldButton.cloneNode(true)
         soldButton.classList.remove('hide');
         sold.appendChild(soldButton);
-        row.appendChild(sold);
 
         soldButton.addEventListener('click', () => {
           soldFn('bonds', theBond.id);
@@ -99,6 +98,7 @@ async function fetchTheBondStock(id) {
       } else {
         sold.classList.add('sold');
       }
+      row.appendChild(sold);
 
       bondStockContainer.appendChild(row);
     });
