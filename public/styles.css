@@ -131,10 +131,14 @@ table.stock {
     }
 
     .sold {
-      color: #333;
+      color: #DC143C;
+      font-style: italic;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px;
 
       &:before {
-        content: "Sold";
+        content: "-SOLD-";
       }
     }
   }

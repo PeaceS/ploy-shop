@@ -48,9 +48,11 @@ async function fetchKeychainStock() {
       row.appendChild(stock);
 
       const sold = document.createElement('td');
-      const soldButton = hiddenSoldButton.cloneNode(true)
-      soldButton.classList.remove('hide');
-      sold.appendChild(soldButton);
+      if (keychain.stock > 0) {
+        const soldButton = hiddenSoldButton.cloneNode(true)
+        soldButton.classList.remove('hide');
+        sold.appendChild(soldButton);
+      }
       row.appendChild(sold);
 
       soldButton.addEventListener('click', () => {
