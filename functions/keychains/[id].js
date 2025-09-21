@@ -13,7 +13,7 @@ export async function onRequestPut(context) {
   }
 
   async function updateCategoryStock(id, env) {
-    const { results } = await db.prepare("SELECT item FROM keychains WHERE id = ?1").bind(id).all();
+    const { results } = await env.DB.prepare("SELECT item FROM keychains WHERE id = ?1").bind(id).all();
     const keychainCategory = results[0].item.split(" - ")[0];
 
     const { success } = await env.DB.prepare(
@@ -36,8 +36,15 @@ export async function onRequestPut(context) {
       return new Response("ID is required.", { status: 400 });
     }
 
-    updateSpecificStock(id, env);
-    updateCategoryStock(id, env);
+    const specificUpdateResult = await updateSpecificStock(id, env);
+    if (specificUpdateResult) {
+      return specificUpdateResult;
+    }
+
+    const categoryUpdateResult = await updateCategoryStock(id, env);
+    if (categoryUpdateResult) {
+      return categoryUpdateResult;
+    }
 
     return new Response(JSON.stringify({ message: "Keychain updated successfully." }), {
       headers: { "Content-Type": "application/json" }
