@@ -80,6 +80,10 @@ async function fetchTheBondStock(id) {
     const bondStockContainer = document.getElementById('bond');
     const hiddenSoldButton = document.getElementById('sold-button');
 
+    for (const row of bondStockContainer.querySelectorAll('.removable')) {
+      row.remove();
+    }
+
     theBonds.forEach(theBond => {
       const row = document.createElement('tr');
 
@@ -102,6 +106,7 @@ async function fetchTheBondStock(id) {
       }
       row.appendChild(sold);
 
+      row.classList.add('removable');
       bondStockContainer.appendChild(row);
     });
 
