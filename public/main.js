@@ -52,12 +52,12 @@ async function fetchKeychainStock() {
         const soldButton = hiddenSoldButton.cloneNode(true)
         soldButton.classList.remove('hide');
         sold.appendChild(soldButton);
+
+        soldButton.addEventListener('click', () => {
+          soldFn('keychains', keychain.id);
+        });
       }
       row.appendChild(sold);
-
-      soldButton.addEventListener('click', () => {
-        soldFn('keychains', keychain.id);
-      });
 
       keychainStockContainer.appendChild(row);
     });
