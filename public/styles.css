@@ -123,6 +123,10 @@ body {
 table.stock {
   text-align: left;
 
+  &.bond td {
+    padding: 0 10px;
+  }
+
   .stock {
     font-size: 1.5em;
     line-height: 1.5em;
