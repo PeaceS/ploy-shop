@@ -126,9 +126,10 @@ table.stock {
   &.bond {
     display: inline-block;
 
-    td {
+    th, td {
       padding: 0 10px;
     }
+  }
 
   .stock {
     font-size: 1.5em;
