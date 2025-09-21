@@ -3,7 +3,7 @@ export async function onRequestGet(context) {
     const { env } = context;
 
     // Access the D1 binding via the name you defined (e.g., 'DB')
-    const { results } = await env.DB.prepare("SELECT * FROM bonds ORDER BY sold ASC").all();
+    const { results } = await env.DB.prepare("SELECT * FROM bonds ORDER BY random() LIMIT 10").all();
 
     return new Response(JSON.stringify(results), {
       headers: {
