@@ -110,5 +110,5 @@ async function fetchTheBondStock(id) {
   }
 }
 
-fetchKeychainStock();
 fetchTheBondStock();
+fetchKeychainStock();
