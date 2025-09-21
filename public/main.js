@@ -110,5 +110,23 @@ async function fetchTheBondStock(id) {
   }
 }
 
+function bindTheBondSearch() {
+  const searchInput = document.getElementById('search-the-bond');
+  let timeoutId;
+
+  searchInput.addEventListener('input', function(event) {
+    const itemId = event.target.value;
+
+    // Clear the previous timeout to reset the timer
+    clearTimeout(timeoutId);
+
+    // Set a new timeout to call the function after 500ms
+    timeoutId = setTimeout(() => {
+      fetchTheBondStock(itemId);
+    }, 500); // Wait for 500 milliseconds before calling
+  });
+}
+
 fetchTheBondStock();
 fetchKeychainStock();
+bindTheBondSearch();

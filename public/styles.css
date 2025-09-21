@@ -119,20 +119,23 @@ body {
     }
   }
 
-  .search-section input {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd; /* A very light gray border */
-    border-radius: 5px; /* Subtle rounded corners */
-    font-family: Arial, sans-serif; /* Matches the body text font */
-    font-size: 16px;
-    box-sizing: border-box; /* Ensures consistent sizing */
-    transition: border-color 0.3s ease-in-out;
+  .search-section
+    margin: 20px 35px;
+    input {
+      width: 100%;
+      padding: 10px 15px;
+      border: 1px solid #ddd; /* A very light gray border */
+      border-radius: 5px; /* Subtle rounded corners */
+      font-family: Arial, sans-serif; /* Matches the body text font */
+      font-size: 16px;
+      box-sizing: border-box; /* Ensures consistent sizing */
+      transition: border-color 0.3s ease-in-out;
 
-    &:focus {
-      border-color: #72a9e3; /* A soft blue border to match the button color */
-      outline: none; /* Removes the default browser outline */
-      box-shadow: 0 0 5px rgba(114, 169, 227, 0.5); /* A gentle glow effect */
+      &:focus {
+        border-color: #72a9e3; /* A soft blue border to match the button color */
+        outline: none; /* Removes the default browser outline */
+        box-shadow: 0 0 5px rgba(114, 169, 227, 0.5); /* A gentle glow effect */
+      }
     }
   }
 }
