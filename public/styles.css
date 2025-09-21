@@ -119,7 +119,7 @@ body {
     }
   }
 
-  .search-section
+  .search-section {
     margin: 20px 35px;
     input {
       width: 100%;
