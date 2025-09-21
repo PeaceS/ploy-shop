@@ -123,9 +123,12 @@ body {
 table.stock {
   text-align: left;
 
-  &.bond td {
-    padding: 0 10px;
-  }
+  &.bond {
+    display: inline-block;
+
+    td {
+      padding: 0 10px;
+    }
 
   .stock {
     font-size: 1.5em;
