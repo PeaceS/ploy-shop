@@ -27,9 +27,10 @@ async function soldFn(item, id, email) {
   }
 };
 
-async function fetchKeychainStock() {
+async function fetchKeychainStock(search) {
   try {
-    const response = await fetch('/keychains');
+    endpoint = search ? `/keychains?search=${search}` : '/keychains';
+    const response = await fetch(endpoint);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -137,8 +138,26 @@ async function bindTheBondSearch() {
   });
 }
 
+async function bindKeychainSearch() {
+  const searchInput = document.getElementById('search-keychain');
+  let timeoutId;
+
+  searchInput.addEventListener('input', function(event) {
+    const searchWord = event.target.value;
+
+    // Clear the previous timeout to reset the timer
+    clearTimeout(timeoutId);
+
+    // Set a new timeout to call the function after 500ms
+    timeoutId = setTimeout(async () => {
+      await fetchKeychainStock(searchWord);
+    }, 500); // Wait for 500 milliseconds before calling
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   fetchTheBondStock();
   fetchKeychainStock();
   bindTheBondSearch();
+  bindKeychainSearch();
 });
