@@ -1,7 +1,7 @@
 export async function onRequestGet(context) {
   try {
-    const { env } = context;
-    const id = context.params.id;
+    const { env, params } = context;
+    const id = params.id;
 
     const { results } = await env.DB.prepare("SELECT * FROM bonds WHERE id = ?1").bind(id).all();
 
@@ -30,9 +30,9 @@ export async function onRequestPut(context) {
   }
 
   try {
-    const { env } = context;
-    const id = context.params.id;
-    const requestBody = await context.request.json();
+    const { env, params, request } = context;
+    const id = params.id;
+    const requestBody = await request.json();
     const email = requestBody.email;
 
     if (!id) {

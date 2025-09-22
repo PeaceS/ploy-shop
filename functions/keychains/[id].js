@@ -29,8 +29,8 @@ export async function onRequestPut(context) {
   }
 
   try {
-    const { env } = context;
-    const id = context.params.id;
+    const { env, params } = context;
+    const id = params.id;
 
     if (!id) {
       return new Response("ID is required.", { status: 400 });
