@@ -16,10 +16,10 @@ export async function onRequestGet(context) {
 }
 
 export async function onRequestPut(context) {
-  async function updateSpecificStock(id, env) {
+  async function sold(id, email, env) {
     const { success } = await env.DB.prepare(
-      "UPDATE bonds SET sold = true WHERE id = ?1"
-    ).bind(id).run();
+      "UPDATE bonds SET sold = true, email = ?2 WHERE id = ?1"
+    ).bind(id, email).run();
 
     if (!success) {
       return new Response(JSON.stringify({ message: "Update failed or no records found for the given ID." }), {
@@ -32,12 +32,14 @@ export async function onRequestPut(context) {
   try {
     const { env } = context;
     const id = context.params.id;
+    const requestBody = await context.request.json();
+    const email = requestBody.email;
 
     if (!id) {
       return new Response("ID is required.", { status: 400 });
     }
 
-    const specificUpdateResult = await updateSpecificStock(id, env);
+    const specificUpdateResult = await sold(id, email, env);
     if (specificUpdateResult) {
       return specificUpdateResult;
     }

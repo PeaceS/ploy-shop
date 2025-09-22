@@ -5,10 +5,14 @@ function formatId(id) {
   return `TB-${paddedId}`;
 }
 
-async function soldFn(item, id) {
+async function soldFn(item, id, email) {
   try {
     const response = await fetch(`/${item}/${id}`, {
       method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email }),
     });
 
     if (!response.ok) {
@@ -99,7 +103,8 @@ async function fetchTheBondStock(id) {
         sold.appendChild(soldButton);
 
         soldButton.addEventListener('click', () => {
-          soldFn('bonds', theBond.id);
+          let email = prompt('Please enter your email');
+          soldFn('bonds', theBond.id, email);
         });
       } else {
         sold.classList.add('sold');
