@@ -40,6 +40,10 @@ async function fetchKeychainStock(search) {
     const keychainStockContainer = document.getElementById('keychain');
     const hiddenSoldButton = document.getElementById('sold-button');
 
+    for (const row of keychainStockContainer.querySelectorAll('.removable')) {
+      row.remove();
+    }
+
     keychains.forEach(keychain => {
       const row = document.createElement('tr');
 
@@ -64,6 +68,7 @@ async function fetchKeychainStock(search) {
       }
       row.appendChild(sold);
 
+      row.classList.add('removable');
       keychainStockContainer.appendChild(row);
     });
 
