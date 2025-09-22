@@ -11,7 +11,7 @@ export async function onRequestGet(context) {
       query += ` AND item LIKE "%${search}%"`;
     }
 
-    query += " ORDER BY stock DESC";
+    query += " ORDER BY stock DESC LIMIT 10";
     const { results } = await env.DB.prepare(query).all();
 
     return new Response(JSON.stringify(results), {
