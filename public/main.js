@@ -18,7 +18,7 @@ async function fetchProducts() {
       titleDiv.textContent = product.item;
 
       imageDiv = productDiv.querySelector('.product-image');
-      imageDiv.src = `${product.image_directory}/1.jpg`;
+      imageDiv.src = `${product.image_directory}/a.webp`;
       imageDiv.alt = product.item;
       imageDiv.id = product.id
 
@@ -30,8 +30,8 @@ async function fetchProducts() {
 
       let currentImageIndex = 0;
       const images = [
-        `${product.image_directory}/1.jpg`,
-        `${product.image_directory}/2.jpg`
+        `${product.image_directory}/a.webp`,
+        `${product.image_directory}/b.webp`
       ];
 
       const updateImage = (id) => {
