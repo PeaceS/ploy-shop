@@ -1,5 +1,21 @@
+@font-face {
+  font-family: "Gilroy";
+  src: url("/public/fonts/Gilroy-Light.otf") format("opentype");
+  font-weight: 300; /* Gilroy Light is typically a font-weight of 300 */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Verdana";
+  src: url("/public/fonts/verdana.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
-  font-family: 'Playfair Display', sans-serif;
+  font-family: 'Gilroy', sans-serif;
   padding: 2rem;
   background: linear-gradient(135deg, #f5f2ef, #e8d8c3);
   color: #333;
