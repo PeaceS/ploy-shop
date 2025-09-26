@@ -27,6 +27,7 @@ a {
   &:hover,
   &:active {
     text-decoration: none;
+    color: inherit;
   }
 }
 
@@ -148,5 +149,9 @@ a {
       grid-row: 3;
       padding: 10px;
     }
+  }
+
+  .the-bond {
+    font-family: "Verdana", sans-serif;
   }
 }
