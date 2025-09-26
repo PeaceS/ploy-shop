@@ -44,7 +44,8 @@ a {
   justify-content: center;
 }
 .product,
-.banner {
+.banner,
+.project {
   border: 1px solid #ddd;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -71,6 +72,38 @@ a {
   @media screen and (min-width: 696px) {
     &.small {
       display: none;
+    }
+  }
+
+  &.project {
+    max-width: 740px;
+
+    button {
+      display: inline-block;
+      padding: 8px 20px; /* Adjust padding for mobile finger-tap area */
+      margin-top: 15px; /* Spacing below the title */
+
+      /* Typography */
+      font-family: inherit; /* Use the site's main font */
+      font-size: 14px;
+      font-weight: 500; /* Medium weight for readability */
+      text-transform: uppercase;
+      text-decoration: none; /* Remove default underline from the <a> tag */
+      color: #333; /* Dark gray/charcoal text color */
+
+      /* Border & Background */
+      background-color: transparent;
+      border: 1px solid #333; /* 1px thin border in dark gray */
+      border-radius: 4px; /* Slightly rounded corners */
+
+      /* Transition for smooth feedback */
+      transition: all 0.2s ease-in-out;
+
+      &:hover, &:active {
+        background-color: rgba(51, 51, 51, 0.05); /* Very light gray background fill (5% opacity) */
+        color: #000; /* Optional: Make text pure black on tap/hover */
+        border-color: #000;
+      }
     }
   }
 
@@ -143,11 +176,6 @@ a {
     .vat {
       grid-row: 2;
       font-size: 0.6em;
-    }
-
-    .button {
-      grid-row: 3;
-      padding: 10px;
     }
   }
 
