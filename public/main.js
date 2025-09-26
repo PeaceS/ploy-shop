@@ -1,3 +1,11 @@
+function getRandomElement(arr) {
+  if (arr.length === 0) {
+    return undefined; // Or handle an empty array as needed
+  }
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
+
 async function fetchProducts() {
   try {
     const response = await fetch('/products');
@@ -17,8 +25,19 @@ async function fetchProducts() {
       titleDiv = productDiv.querySelector('.product-title');
       titleDiv.textContent = product.item;
 
+      let currentImageIndex = 0;
+      const images = [
+        `${product.image_directory}/a.webp`,
+        `${product.image_directory}/b.webp`,
+        `${product.image_directory}/c.webp`,
+        `${product.image_directory}/d.webp`,
+        `${product.image_directory}/e.webp`,
+        `${product.image_directory}/f.webp`,
+        `${product.image_directory}/g.webp`
+      ];
+
       imageDiv = productDiv.querySelector('.product-image');
-      imageDiv.src = `${product.image_directory}/a.webp`;
+      imageDiv.src = getRandomElement(images);
       imageDiv.alt = product.item;
       imageDiv.id = product.id
 
@@ -27,12 +46,6 @@ async function fetchProducts() {
 
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
-
-      let currentImageIndex = 0;
-      const images = [
-        `${product.image_directory}/a.webp`,
-        `${product.image_directory}/b.webp`
-      ];
 
       const updateImage = (id) => {
         imageDiv = document.getElementById(id);
