@@ -36,7 +36,7 @@ async function fetchProducts() {
         `${product.image_directory}/e.webp`,
         `${product.image_directory}/f.webp`,
         `${product.image_directory}/g.webp`
-      ];
+      ].slice(0, product.categories_count);
 
       preload(images);
 
