@@ -6,6 +6,16 @@ function getRandomElement(arr) {
   return arr[randomIndex];
 }
 
+function preload(images) {
+  images.forEach(image => {
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = image;
+    document.head.appendChild(preload);
+  });
+}
+
 async function fetchProducts() {
   try {
     const response = await fetch('/products');
@@ -35,6 +45,8 @@ async function fetchProducts() {
         `${product.image_directory}/f.webp`,
         `${product.image_directory}/g.webp`
       ];
+
+      preload(images);
 
       imageDiv = productDiv.querySelector('.product-image');
       imageDiv.src = getRandomElement(images);
