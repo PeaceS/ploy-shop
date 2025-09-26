@@ -1,3 +1,13 @@
+function preload(images) {
+  images.forEach(image => {
+    const preload = document.createElement('link');
+    preload.rel = 'preload';
+    preload.as = 'image';
+    preload.href = image;
+    document.head.appendChild(preload);
+  });
+}
+
 async function fetchProducts() {
   try {
     const response = await fetch('/products');
@@ -17,8 +27,21 @@ async function fetchProducts() {
       titleDiv = productDiv.querySelector('.product-title');
       titleDiv.textContent = product.item;
 
+      let currentImageIndex = 0;
+      const images = [
+        `${product.image_directory}/a.webp`,
+        `${product.image_directory}/b.webp`,
+        `${product.image_directory}/c.webp`,
+        `${product.image_directory}/d.webp`,
+        `${product.image_directory}/e.webp`,
+        `${product.image_directory}/f.webp`,
+        `${product.image_directory}/g.webp`
+      ].slice(0, product.categories_count);
+
+      preload(images);
+
       imageDiv = productDiv.querySelector('.product-image');
-      imageDiv.src = `${product.image_directory}/a.webp`;
+      imageDiv.src = images[0];
       imageDiv.alt = product.item;
       imageDiv.id = product.id
 
@@ -27,12 +50,6 @@ async function fetchProducts() {
 
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
-
-      let currentImageIndex = 0;
-      const images = [
-        `${product.image_directory}/a.webp`,
-        `${product.image_directory}/b.webp`
-      ];
 
       const updateImage = (id) => {
         imageDiv = document.getElementById(id);
