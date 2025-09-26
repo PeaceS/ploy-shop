@@ -4,6 +4,16 @@ body {
   background: linear-gradient(135deg, #f5f2ef, #e8d8c3);
   color: #333;
 }
+
+a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+
 .thai {
   font-family: "Noto Sans Thai", sans-serif;
 }
