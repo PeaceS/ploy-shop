@@ -1,11 +1,3 @@
-function getRandomElement(arr) {
-  if (arr.length === 0) {
-    return undefined; // Or handle an empty array as needed
-  }
-  const randomIndex = Math.floor(Math.random() * arr.length);
-  return arr[randomIndex];
-}
-
 function preload(images) {
   images.forEach(image => {
     const preload = document.createElement('link');
@@ -49,7 +41,7 @@ async function fetchProducts() {
       preload(images);
 
       imageDiv = productDiv.querySelector('.product-image');
-      imageDiv.src = getRandomElement(images);
+      imageDiv.src = images[0];
       imageDiv.alt = product.item;
       imageDiv.id = product.id
 
