@@ -95,6 +95,7 @@ async function fetchTheBondStock(id) {
     }
 
     const promptEmail = await fetch('/config/prompt_the_bond_buyer_email');
+    console.log(promptEmail);
     if(promptEmail) { console.log('Prompt email!'); }
 
     theBonds.forEach(theBond => {
