@@ -3,14 +3,19 @@ export async function onRequestGet(context) {
     const { env, params } = context;
 
     const flagName = params.flag;
-    console.log(flagName);
     const config = await env.FEATURE_FLAGS.get(flagName);
 
+    let isEnabled = false;
+
     if (config && config == '1') {
-      return new Response(true);
+      isEnabled = true;
     }
 
-    return new Response(false);
+    return new Response(JSON.stringify({ isEnabled: isEnabled }), {
+      headers: {
+        'Content-Type': 'application/json' // Crucial for telling the client to expect JSON
+      }
+    });
   } catch (err) {
     return new Response(err.message, { status: 500 });
   }

@@ -1,3 +1,15 @@
+async function isEnabled(flag) {
+  const response = await fetch(`/config/${flag}`);
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const config = await response.json(); 
+  console.log(config.isEnabled);
+  return config.isEnabled;
+}
+
 function formatId(id) {
   const idAsString = String(id);
   const paddedId = idAsString.padStart(3, '0');
@@ -94,9 +106,7 @@ async function fetchTheBondStock(id) {
       row.remove();
     }
 
-    const promptEmail = await fetch('/config/prompt_the_bond_buyer_email').json();
-    console.log(promptEmail);
-    if(promptEmail) { console.log('Prompt email!'); }
+    isEnabled('prompt_the_bond_buyer_email');
 
     theBonds.forEach(theBond => {
       const row = document.createElement('tr');
