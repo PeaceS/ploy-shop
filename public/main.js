@@ -94,6 +94,9 @@ async function fetchTheBondStock(id) {
       row.remove();
     }
 
+    const promptEmail = await fetch('/config/prompt_the_bond_buyer_email');
+    if(promptEmail) { console.log('Prompt email!'); }
+
     theBonds.forEach(theBond => {
       const row = document.createElement('tr');
 
