@@ -91,6 +91,10 @@ a {
         h3 {
           grid-column: 2 / 3;
         }
+
+        p {
+          padding: 0 20px;
+        }
       }
     }
 
