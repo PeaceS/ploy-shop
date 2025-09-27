@@ -106,6 +106,8 @@ async function fetchTheBondStock(id) {
       row.remove();
     }
 
+    const promptEmail = await isEnabled('prompt_the_bond_buyer_email');
+
     theBonds.forEach(theBond => {
       const row = document.createElement('tr');
 
@@ -122,7 +124,7 @@ async function fetchTheBondStock(id) {
 
         soldButton.addEventListener('click', () => {
           let email;
-          if (isEnabled('prompt_the_bond_buyer_email')) {
+          if (promptEmail) {
             email = prompt('Please enter your email');
           }
           soldFn('bonds', theBond.id, email);
