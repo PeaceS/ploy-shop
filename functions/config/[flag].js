@@ -6,11 +6,11 @@ export async function onRequestGet(context) {
     const config = await env.FEATURE_FLAGS.get(flagName);
 
     if (config && config == '1') {
-      return true;
+      return Response(true);
     }
 
-    return false;
+    return Response(false);
   } catch (err) {
-    return false;
+    return Response(false);
   }
 }
