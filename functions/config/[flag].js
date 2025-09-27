@@ -3,7 +3,7 @@ export async function onRequestGet(context) {
     const { env, params } = context;
 
     const flagName = params.flag;
-    const config = await env.FEATURE_FLAGS.get(flagName);
+    const config = await env.FEATURE_FLAG.get(flagName);
 
     return new Response(config);
 
