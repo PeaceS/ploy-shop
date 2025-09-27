@@ -123,7 +123,7 @@ async function fetchTheBondStock(id) {
         sold.appendChild(soldButton);
 
         soldButton.addEventListener('click', () => {
-          let email;
+          let email = '';
           if (promptEmail) {
             email = prompt('Please enter your email');
           }
