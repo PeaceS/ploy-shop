@@ -10,7 +10,7 @@ export async function onRequestPost(context) {
     let event;
 
     try {
-      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+      event = await stripe.webhooks.constructEventAsync(request.body, sig, endpointSecret);
     } catch (err) {
       console.log(err.message);
       return new Response(`Webhook Error: ${err.message}`, { status: 400 });
