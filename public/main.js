@@ -51,6 +51,9 @@ async function fetchProducts() {
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
 
+      stripeLink = productDiv.querySelector('.stripe-link');
+      stripeLink.href += product.stripe_link;
+
       const updateImage = (id) => {
         imageDiv = document.getElementById(id);
         imageDiv.classList.remove('show');

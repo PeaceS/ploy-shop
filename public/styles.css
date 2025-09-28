@@ -186,14 +186,13 @@ a {
     }
   }
 
-  form {
-    display: inline-grid;
-    grid-template-columns: max-content;
+  .product-details {
+    display: block;
     align-items: center;
-    grid-gap: 5px;
 
     .product-price {
-      grid-row: 1;
+      display: block;
+      width: 100%;
       font-weight: 600;
 
       &::before {
@@ -204,6 +203,18 @@ a {
     .vat {
       grid-row: 2;
       font-size: 0.6em;
+    }
+
+    button {
+      background-color: rgb(0, 116, 212);
+      color: white;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 300px;
+      height: 35px;
+      border: none;
+      font-weight: bold;
+      margin-top: 10px;
     }
   }
 }
