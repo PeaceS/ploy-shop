@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ARTMUC Autumn 2025</title>
-  <link rel="stylesheet" href="/styles.css" defer />
-  <script src="/main.js" defer></script>
+  <link defer rel="stylesheet" href="/styles.css" />
+  <script defer src="/main.js"></script>
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 </head>
 <body>
   <h1>Bubble Merchandises</h1>
@@ -36,13 +37,16 @@
       </div>
       <h3 class="product-title"></h3>
       <p class="product-description"></p>
-      <div id="paypal-button-container-1"></div>
 
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick" />
-        <input type="hidden" name="hosted_button_id" value="MZ36YKX95HERG" />
+      <form>
         <span class="product-price"></span>
         <span class="vat">(incl. 19% VAT)</span>
+
+        <stripe-buy-button
+          buy-button-id="buy_btn_1SCGLcJOHrAfEkInPDkXIIid"
+          publishable-key="pk_live_51SCG29JOHrAfEkInMwB5bBFM4XmeYw1BsLoTkim9IPrPa4kF7u3EH9ZscJ3zJSYGa2FtutgA1WkqwSLxHqrgH5Av00yPpiueyl"
+        >
+        </stripe-buy-button>
       </form>
     </div>
   </div>
