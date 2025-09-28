@@ -187,13 +187,12 @@ a {
   }
 
   form {
-    display: inline-grid;
-    grid-template-columns: max-content;
+    display: block;
     align-items: center;
-    grid-gap: 5px;
 
     .product-price {
-      grid-row: 1;
+      display: block;
+      width: 100%;
       font-weight: 600;
 
       &::before {
