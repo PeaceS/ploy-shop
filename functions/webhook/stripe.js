@@ -2,7 +2,7 @@ export async function onRequestPost(context) {
   try {
     const { env, request } = context;
 
-    console.log('.... ok');
+    console.log('.... c,monnn');
     console.log(env.STRIPE_SECRET_KEY);
     console.log(env.STRIPE_ENDPOINT_SECRET);
     const stripe = require('stripe')(env.STRIPE_SECRET_KEY);
