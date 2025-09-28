@@ -2,9 +2,14 @@ export async function onRequestPost(context) {
   try {
     const { env, request } = context;
 
+    console.log('.... ok');
+    console.log(env.STRIPE_SECRET_KEY);
+    console.log(env.STRIPE_ENDPOINT_SECRET);
     const stripe = require('stripe')(env.STRIPE_SECRET_KEY);
     const endpointSecret = env.STRIPE_ENDPOINT_SECRET;
     const sig = request.headers.get('stripe-signature');
+
+    console.log(sig);
 
     let event;
 
@@ -15,6 +20,7 @@ export async function onRequestPost(context) {
       return;
     }
 
+    console.log(event);
     // Handle the event
     switch (event.type) {
       case 'checkout.session.completed':
