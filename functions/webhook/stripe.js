@@ -22,7 +22,10 @@ export async function onRequestPost(context) {
     // Handle the event
     switch (event.type) {
       case 'checkout.session.completed':
-        const checkoutSessionCompleted = event.data.object;
+        const session = event.data.object;
+        const email = session.customer_details?.email
+        console.log(session);
+        console.log(email);
         // Then define and call a function to handle the event checkout.session.completed
         break;
       // ... handle other event types
