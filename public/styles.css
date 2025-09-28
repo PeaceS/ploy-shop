@@ -204,5 +204,10 @@ a {
       grid-row: 2;
       font-size: 0.6em;
     }
+
+    iframe {
+      width: 100% !important;
+      margin-top: 10px !important;
+    }
   }
 }
