@@ -4,9 +4,9 @@ export async function onRequestPost(context) {
 
     console.log('.... c,monnn');
     console.log(env.STRIPE_SECRET_KEY);
-    console.log(env.STRIPE_ENDPOINT_SECRET);
     const stripe = require('stripe')(env.STRIPE_SECRET_KEY);
     const endpointSecret = env.STRIPE_ENDPOINT_SECRET;
+    console.log(endpointSecret);
     const sig = request.headers.get('stripe-signature');
 
     console.log(sig);
@@ -35,6 +35,7 @@ export async function onRequestPost(context) {
     // Return a 200 response to acknowledge receipt of the event
     return new Response('ok', { status: 200 });
   } catch (err) {
+    console.log(err.message);
     return new Response(`Error fetching keychains: ${err.message}`, { status: 500 });
   }
 }
