@@ -3,23 +3,17 @@ import Stripe from 'stripe';
 export async function onRequestPost(context) {
   try {
     const { env, request } = context;
-
-    console.log('.... c,monnn');
-    console.log(env.STRIPE_SECRET_KEY);
     const stripe = new Stripe(env.STRIPE_SECRET_KEY); 
     const endpointSecret = env.STRIPE_ENDPOINT_SECRET;
-    console.log(endpointSecret);
     const sig = request.headers.get('stripe-signature');
-
-    console.log(sig);
 
     let event;
 
     try {
       event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
     } catch (err) {
-      response.status(400).send(`Webhook Error: ${err.message}`);
-      return;
+      console.log(err.message);
+      return new Response(`Webhook Error: ${err.message}`, { status: 400 });
     }
 
     console.log(event);
