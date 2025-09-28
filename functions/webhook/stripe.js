@@ -3,6 +3,8 @@ import Stripe from 'stripe';
 export async function onRequestPost(context) {
   try {
     const { env, request } = context;
+
+    const rawBody = await request.text();
     const stripe = new Stripe(env.STRIPE_SECRET_KEY); 
     const endpointSecret = env.STRIPE_ENDPOINT_SECRET;
     const sig = request.headers.get('stripe-signature');
@@ -10,7 +12,7 @@ export async function onRequestPost(context) {
     let event;
 
     try {
-      event = await stripe.webhooks.constructEventAsync(request.body, sig, endpointSecret);
+      event = await stripe.webhooks.constructEventAsync(rawBody, sig, endpointSecret);
     } catch (err) {
       console.log(err.message);
       return new Response(`Webhook Error: ${err.message}`, { status: 400 });
