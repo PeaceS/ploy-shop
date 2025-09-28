@@ -210,6 +210,11 @@ a {
       color: white;
       border-radius: 5px;
       width: 100%;
+      max-width: 300px;
+      height: 35px;
+      border: none;
+      font-weight: bold;
+      margin-top: 10px;
     }
   }
 }
