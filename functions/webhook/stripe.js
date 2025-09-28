@@ -1,10 +1,12 @@
+import Stripe from 'stripe';
+
 export async function onRequestPost(context) {
   try {
     const { env, request } = context;
 
     console.log('.... c,monnn');
     console.log(env.STRIPE_SECRET_KEY);
-    const stripe = require('stripe')(env.STRIPE_SECRET_KEY);
+    const stripe = new Stripe(env.STRIPE_SECRET_KEY); 
     const endpointSecret = env.STRIPE_ENDPOINT_SECRET;
     console.log(endpointSecret);
     const sig = request.headers.get('stripe-signature');
