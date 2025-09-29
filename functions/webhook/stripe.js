@@ -4,6 +4,7 @@ export async function onRequestPost(context) {
   async function createTransaction(db, session) {
     const productId = session.metadata?.product_id;
     const email = session.customer_details?.email;
+    const price = session.amount_total;
     const currentTime = Math.floor(Date.now() / 1000);
 
     console.log(session);
@@ -11,8 +12,8 @@ export async function onRequestPost(context) {
     await db.prepare(
       "INSERT INTO transactions \
       (uuid, product_type, product_id, price, purchased_at, type, email) \
-      VALUES (?1, 'keychains', ?2, 1, ?3, 'stripe', ?4);"
-    ).bind(session.id, productId, currentTime, email).run();
+      VALUES (?1, 'keychains', ?2, ?5, ?3, 'stripe', ?4);"
+    ).bind(session.id, productId, currentTime, email, price).run();
   }
 
   try {
