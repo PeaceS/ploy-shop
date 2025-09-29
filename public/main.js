@@ -14,7 +14,7 @@ async function createSession() {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ productId: 3 }),
+    body: JSON.stringify({ productId: 5 }),
   });
 }
 
