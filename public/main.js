@@ -218,6 +218,7 @@ async function bindKeychainSearch() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  fetchTransaction();
   fetchTheBondStock();
   fetchKeychainStock();
   bindTheBondSearch();
