@@ -1,11 +1,11 @@
 function showPopup(product, cat_count, time, uuid) {
-  popup = document.getElementById('popup');
+  const popup = document.getElementById('popup');
   popup.classList.remove('hide');
 
-  title = popup.getElementById('title');
+  const title = popup.querySelector('#title');
   title.textContent = product;
-  subTitle = popup.getElementById('subTitle');
-  subTitle.textContent = time;
+  const subTitle = popup.querySelector('#subTitle');
+  subTitle.textContent = typeof time === 'string' ? time : time.textContent;
 
   const colors = [
     'Magenta',
@@ -15,7 +15,32 @@ function showPopup(product, cat_count, time, uuid) {
     'Red brown',
     'White',
     'Nude'
-  ]
+  ];
+
+  const list = popup.querySelector('#list');
+  if (!list) return;
+  while (list.firstChild) list.removeChild(list.firstChild);
+
+  const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, cat_count)));
+  limitedColors.forEach((color, index) => {
+    const id = `color-${index}`;
+
+    const li = document.createElement('li');
+
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.textContent = color;
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'color';
+    input.id = id;
+    input.value = color;
+
+    li.appendChild(input);
+    li.appendChild(label);
+    list.appendChild(li);
+  });
 }
 
 async function isEnabled(flag) {
