@@ -233,10 +233,18 @@ async function bindKeychainSearch() {
   });
 }
 
+function handlePopup() {
+  popup = document.getElementById('popup');
+  popup.addEventListener('click', () => {
+    popup.classList.add('hide');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   fetchTransaction();
   fetchTheBondStock();
   fetchKeychainStock();
   bindTheBondSearch();
   bindKeychainSearch();
+  handlePopup();
 });
