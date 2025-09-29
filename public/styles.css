@@ -200,3 +200,7 @@ table.stock {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow to show it's "pressed" */
   }
 }
+
+table#transaction {
+  font-size: 0.7em;
+}
