@@ -65,8 +65,7 @@ async function fetchProducts() {
       // stripeLink.href += product.stripe_link;
       stripeLink.href = '';
       stripeLink.addEventListener('click', async () => {
-        link = await createSession();
-        console.log(link);
+        window.location.href = await createSession();
       });
 
       const updateImage = (id) => {
