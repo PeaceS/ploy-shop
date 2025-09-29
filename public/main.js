@@ -8,6 +8,16 @@ function preload(images) {
   });
 }
 
+async function createSession() {
+  await fetch(`/${item}/${id}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email: email }),
+  });
+}
+
 async function fetchProducts() {
   try {
     const response = await fetch('/products');
@@ -52,7 +62,12 @@ async function fetchProducts() {
       priceDiv.textContent = product.price;
 
       stripeLink = productDiv.querySelector('.stripe-link');
-      stripeLink.href += product.stripe_link;
+      // stripeLink.href += product.stripe_link;
+      stripeLink.href = '';
+      stripeLink.addEventListener('click', async () => {
+        link = await createSession();
+        console.log(link);
+      });
 
       const updateImage = (id) => {
         imageDiv = document.getElementById(id);
