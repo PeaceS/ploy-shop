@@ -71,8 +71,7 @@ async function fetchProducts() {
         loader.classList.add('loading');
         try {
           const checkoutLink = await createSession(product.stripe_price_id, product.id);
-          // window.location.href = checkoutLink.url;
-          console.log(checkoutLink);
+          window.location.href = checkoutLink.url;
         } finally {
           loader.classList.remove('loading');
         }
