@@ -279,6 +279,18 @@ function handlePopup() {
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });
+
+  const confirmBtn = popup.querySelector('#confirmBtn');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      const selected = popup.querySelector('input[name="color"]:checked');
+      if (selected) {
+        console.log(selected.id);
+      } else {
+        console.log('No color selected');
+      }
+    });
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
