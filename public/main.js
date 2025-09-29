@@ -1,3 +1,8 @@
+function showPopup(product, time, uuid) {
+  popup = document.getElementById('popup');
+  popup.classList.remove('hide');
+}
+
 async function isEnabled(flag) {
   const response = await fetch(`/config/${flag}`);
 
@@ -183,6 +188,10 @@ async function fetchTransaction() {
       row.appendChild(check);
 
       transactionStockContainer.appendChild(row);
+
+      row.addEventListener('click', () => {
+        showPopup(productText, dateTime, transaction.uuid);
+      });
     }
 
   } catch (error) {
