@@ -1,6 +1,21 @@
-function showPopup(product, time, uuid) {
+function showPopup(product, cat_count, time, uuid) {
   popup = document.getElementById('popup');
   popup.classList.remove('hide');
+
+  title = popup.getElementById('title');
+  title.textContent = product;
+  subTitle = popup.getElementById('subTitle');
+  subTitle.textContent = time;
+
+  const colors = [
+    'Magenta',
+    'Green',
+    'Blue',
+    'Dark brown',
+    'Red brown',
+    'White',
+    'Nude'
+  ]
 }
 
 async function isEnabled(flag) {
@@ -178,8 +193,8 @@ async function fetchTransaction() {
 
       const item = document.createElement('td');
       const productRes = await fetch(`/products/${transaction.product_type}/${transaction.product_id}`);
-      const productText = await productRes.text();
-      item.textContent = productText;
+      const productDetail = await productRes.json();
+      item.textContent = productDetail.item;
       row.appendChild(item);
 
       const check = document.createElement('td');
@@ -190,7 +205,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        showPopup(productText, dateTime, transaction.uuid);
+        showPopup(productDetail.item, productDetail.categories_count, dateTime, transaction.uuid);
       });
     }
 
@@ -235,7 +250,8 @@ async function bindKeychainSearch() {
 
 function handlePopup() {
   popup = document.getElementById('popup');
-  popup.addEventListener('click', () => {
+  closeBtn = popup.getElementById('closeBtn');
+  closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });
 }

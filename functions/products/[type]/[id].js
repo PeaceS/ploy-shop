@@ -14,8 +14,8 @@ export async function onRequestGet(context) {
     if (type == 'bonds') {
       itemName = formatId(id);
     } else {
-      const { results } = await env.DB.prepare(`SELECT item FROM ${type} WHERE id = ?1`).bind(id).all();
-      itemName = results[0]?.item;
+      const { results } = await env.DB.prepare(`SELECT item, categories_count FROM ${type} WHERE id = ?1`).bind(id).all();
+      itemName = results[0];
     }
 
     return new Response(itemName, {
