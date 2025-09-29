@@ -22,9 +22,8 @@ function showPopup(product, cat_count, time, uuid) {
   while (list.firstChild) list.removeChild(list.firstChild);
 
   const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, cat_count)));
-  limitedColors.forEach((color, index) => {
-    const id = `color-${index}`;
-
+  limitedColors.forEach((color) => {
+    const id = color;
     const li = document.createElement('li');
 
     const label = document.createElement('label');
