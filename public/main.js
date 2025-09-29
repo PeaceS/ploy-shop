@@ -291,6 +291,9 @@ function handlePopup() {
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });
+
+  const confirmBtn = popup.querySelector('#confirmBtn');
+  confirmBtn.removeEventListener('click');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
