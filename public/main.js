@@ -40,6 +40,18 @@ function showPopup(product, cat_count, time, uuid) {
     li.appendChild(label);
     list.appendChild(li);
   });
+
+  const confirmBtn = popup.querySelector('#confirmBtn');
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      const selected = popup.querySelector('input[name="color"]:checked');
+      if (selected) {
+        console.log(`${product} - ${selected.id}`);
+      } else {
+        console.log('No color selected');
+      }
+    });
+  }
 }
 
 async function isEnabled(flag) {
@@ -279,18 +291,6 @@ function handlePopup() {
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });
-
-  const confirmBtn = popup.querySelector('#confirmBtn');
-  if (confirmBtn) {
-    confirmBtn.addEventListener('click', () => {
-      const selected = popup.querySelector('input[name="color"]:checked');
-      if (selected) {
-        console.log(selected.id);
-      } else {
-        console.log('No color selected');
-      }
-    });
-  }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
