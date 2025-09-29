@@ -230,6 +230,8 @@ table#transaction {
     z-index: 1;
     padding: 25px;
     border-radius: 25px;
+    display: flex;
+    flex-direction: column;
 
     h2, h5 {
       text-align: center;
