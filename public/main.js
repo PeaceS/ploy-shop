@@ -274,8 +274,9 @@ async function bindKeychainSearch() {
 }
 
 function handlePopup() {
-  popup = document.getElementById('popup');
-  closeBtn = popup.getElementById('closeBtn');
+  const popup = document.getElementById('popup');
+  const closeBtn = popup.getElementById('closeBtn');
+
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });

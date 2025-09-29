@@ -10,15 +10,16 @@ export async function onRequestGet(context) {
     const { env, params } = context;
     const { type, id } = params;
 
-    let itemName;
+    let item;
     if (type == 'bonds') {
-      itemName = formatId(id);
+      item = formatId(id);
     } else {
       const { results } = await env.DB.prepare(`SELECT item, categories_count FROM ${type} WHERE id = ?1`).bind(id).all();
-      itemName = results[0];
+      item = results[0];
+      console.log(item);
     }
 
-    return new Response(itemName, {
+    return new Response(JSON.stringify(item), {
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'public, max-age=3600', 
