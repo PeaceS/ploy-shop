@@ -6,18 +6,15 @@ export async function onRequestPost(context) {
 
     try {
         // const { priceId, productId } = await request.json(); 
-        const priceId = 'price_1SCH1jJnhtwlv0mpGCbzAsb6';
+        const priceId = 'price_1SCGLKJOHrAfEkInoFc57lCu';
         const { productId } = await request.json();
 
         console.log(productId);
-        console.log(request);
+        console.log(request.url.origin);
 
-        const prices = await stripe.prices.list({
-          limit: 10
-        });
-        const mode = prices.data.length > 0 ? prices.data[0].livemode ? 'LIVE' : 'TEST' : 'UNKNOWN';
-        console.log(`mode: ${mode}`);
-        console.log(prices.data[0]);
+        const protocol = 'https';
+        const host = request.headers.get('host');
+        console.log(host);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -26,6 +23,8 @@ export async function onRequestPost(context) {
                 quantity: 1,
             }],
             mode: 'payment',
+            success_url: `${protocol}://${host}/success`,
+            cancel_url: `${protocol}://${host}/cancel`,
             metadata: {
                 product_id: productId 
             },
