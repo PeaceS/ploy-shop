@@ -215,6 +215,32 @@ a {
       border: none;
       font-weight: bold;
       margin-top: 10px;
+
+      .loader {
+        border: 3px solid #f3f3f3; /* Light grey border */
+        border-top: 3px solid #3498db; /* Blue border for the spinning part */
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        
+        /* Initially hide the spinner */
+        display: none; 
+        
+        /* Animation definition */
+        animation: spin 1s linear infinite;
+
+        margin-right: 5px; 
+
+        &.loading {
+          display: inline-block;
+        }
+      }
+      
+      /* Keyframe animation for the spin effect */
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
     }
   }
 }
