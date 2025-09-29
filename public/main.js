@@ -143,6 +143,46 @@ async function fetchTheBondStock(id) {
   }
 }
 
+async function fetchTransaction() {
+  try {
+    const endpoint = '/transactions';
+    const response = await fetch(endpoint);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const transactions = await response.json();
+    const transactionStockContainer = document.getElementById('transaction');
+    const hiddenOKButton = document.getElementById('ok-button');
+
+    transactions.forEach(transaction => {
+      const row = document.createElement('tr');
+
+      const item = document.createElement('td');
+      item.textContent = transaction.item;
+      row.appendChild(item);
+
+      const dateTime = document.createElement('td');
+
+      const dateInMilliseconds = transaction.purchased_at * 1000;
+      const date = new Date(dateInMilliseconds);
+      const simpleOptions = {
+        dateStyle: 'medium', // e.g., Jan 1, 2023
+        timeStyle: 'short',  // e.g., 1:00 AM
+      };
+
+      dateTime.textContent = date.toString(undefined, simpleOptions);
+      row.appendChild(dateTime);
+
+      transactionStockContainer.appendChild(row);
+    });
+
+  } catch (error) {
+    console.error('Failed to fetch keychains:', error);
+  }
+}
+
 async function bindTheBondSearch() {
   const searchInput = document.getElementById('search-the-bond');
   let timeoutId;
