@@ -2,7 +2,7 @@ export async function onRequestGet(context) {
   try {
     const { env } = context;
 
-    let query = "SELECT * FROM transactions WHERE status = 'pending'";
+    let query = "SELECT product_type, product_id, purchased_at FROM transactions WHERE status = 'pending'";
     query += " ORDER BY purchased_at DESC LIMIT 10";
     const { results } = await env.DB.prepare(query).all();
 

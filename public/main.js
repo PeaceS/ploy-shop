@@ -156,12 +156,8 @@ async function fetchTransaction() {
     const transactionStockContainer = document.getElementById('transaction');
     const hiddenOKButton = document.getElementById('ok-button');
 
-    transactions.forEach(transaction => {
+    for (const transaction of transactions) {
       const row = document.createElement('tr');
-
-      const item = document.createElement('td');
-      item.textContent = transaction.item;
-      row.appendChild(item);
 
       const dateTime = document.createElement('td');
 
@@ -175,8 +171,14 @@ async function fetchTransaction() {
       dateTime.textContent = date.toLocaleString(undefined, simpleOptions);
       row.appendChild(dateTime);
 
+      const item = document.createElement('td');
+      const productRes = await fetch(`/products/${transaction.product_type}/${transaction.product_id}`);
+      const productText = await productRes.text();
+      item.textContent = productText;
+      row.appendChild(item);
+
       transactionStockContainer.appendChild(row);
-    });
+    }
 
   } catch (error) {
     console.error('Failed to fetch keychains:', error);
