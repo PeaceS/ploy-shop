@@ -275,7 +275,7 @@ async function bindKeychainSearch() {
 
 function handlePopup() {
   const popup = document.getElementById('popup');
-  const closeBtn = popup.getElementById('closeBtn');
+  const closeBtn = popup.querySelector('#closeBtn');
 
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
