@@ -10,6 +10,9 @@ export async function onRequestGet(context) {
     const { env, params } = context;
     const { type, id } = params;
 
+    console.log(params);
+    console.log(type);
+
     let itemName;
     if (type == 'bonds') {
       itemName = formatId(id);
