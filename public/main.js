@@ -30,7 +30,7 @@ async function fetchProducts() {
     const productContainer = document.getElementById('product-container');
     const productTemplate = document.getElementById('product-template');
 
-    products.forEach(product => {
+    products.forEach(async product => {
       const productDiv = productTemplate.cloneNode(true);
       productDiv.removeAttribute('id');
 
@@ -62,12 +62,9 @@ async function fetchProducts() {
       priceDiv.textContent = product.price;
 
       stripeLink = productDiv.querySelector('.stripe-link');
-      // stripeLink.href += product.stripe_link;
-      stripeLink.href = '';
-      stripeLink.addEventListener('click', async () => {
-        link = await createSession();
-        console.log(link);
-        window.location.href = link;
+      checkoutLink = await createSession();
+      stripeLink.addEventListener('click', () => {
+        window.location.href = checkoutLink;
       });
 
       const updateImage = (id) => {
