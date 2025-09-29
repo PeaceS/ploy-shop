@@ -6,7 +6,7 @@ export async function onRequestPost(context) {
 
     try {
         // const { priceId, productId } = await request.json(); 
-        const priceId = 'price_1SCGLKJOHrAfEkInoFc57lCu';
+        const priceId = 'price_1SCGKeJOHrAfEkInQlqHH5Ph';
         const { productId } = await request.json();
 
         console.log(productId);
