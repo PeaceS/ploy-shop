@@ -207,4 +207,8 @@ table#transaction {
   .time {
     padding-right: 10px;
   }
+
+  .check {
+    padding-left: 5px;
+  }
 }

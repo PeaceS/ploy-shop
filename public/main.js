@@ -167,7 +167,7 @@ async function fetchTransaction() {
         timeStyle: 'short'
       };
 
-      dateTime.textContent = date.toLocaleString(undefined, simpleOptions);
+      dateTime.textContent = date.toLocaleString('th-TH', simpleOptions);
       dateTime.classList.add('time');
       row.appendChild(dateTime);
 
@@ -179,6 +179,7 @@ async function fetchTransaction() {
 
       const check = document.createElement('td');
       check.textContent = '✓';
+      check.classList.add('check');
       row.appendChild(check);
 
       transactionStockContainer.appendChild(row);
