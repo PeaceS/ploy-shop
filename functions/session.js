@@ -10,7 +10,7 @@ export async function onRequestPost(context) {
         const { productId } = await request.json();
 
         console.log(productId);
-        console.log(request.url.origin);
+        console.log(request);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -19,8 +19,6 @@ export async function onRequestPost(context) {
                 quantity: 1,
             }],
             mode: 'payment',
-            success_url: `${request.url.origin}/success`,
-            cancel_url: `${request.url.origin}/cancel`,
             metadata: {
                 product_id: productId 
             },
