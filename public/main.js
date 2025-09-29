@@ -65,7 +65,7 @@ async function fetchProducts() {
       stripeLink.addEventListener('click', async () => {
         const checkoutLink = await createSession(product.id);
         console.log(checkoutLink);
-        window.location.href = checkoutLink;
+        // window.location.href = checkoutLink;
       });
 
       const updateImage = (id) => {
