@@ -229,5 +229,6 @@ table#transaction {
     bottom: 10%;
     left: 10%;
     z-index: 1;
+    padding: 25px;
   }
 }
