@@ -1,0 +1,4 @@
+-- Migration number: 0010 	 2025-09-29T01:37:40.446Z
+
+ALTER TABLE transactions ADD COLUMN type TEXT NOT NULL;
+ALTER TABLE transactions ADD COLUMN email TEXT NOT NULL;
