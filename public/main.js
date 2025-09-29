@@ -154,7 +154,6 @@ async function fetchTransaction() {
 
     const transactions = await response.json();
     const transactionStockContainer = document.getElementById('transaction');
-    const hiddenOKButton = document.getElementById('ok-button');
 
     for (const transaction of transactions) {
       const row = document.createElement('tr');
@@ -177,6 +176,10 @@ async function fetchTransaction() {
       const productText = await productRes.text();
       item.textContent = productText;
       row.appendChild(item);
+
+      const check = document.createElement('td');
+      check.textContent = '✓';
+      row.appendChild(check);
 
       transactionStockContainer.appendChild(row);
     }
