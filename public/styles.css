@@ -234,12 +234,26 @@ table#transaction {
     h2, h5 {
       text-align: center;
     }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    h5 {
+      margin: 0;
+    }
+
     ul {
       list-style-type: none;
+      margin: 30px 0;
 
       li input {
         margin-right: 10px;
       }
+    }
+
+    button {
+      margin-top: auto;
     }
 
     #closeBtn {
@@ -247,7 +261,7 @@ table#transaction {
       display: inline-block;
       text-align: center;
       font-weight: bold;
-      margin-top: 25px;
+      margin-bottom: 5px;
     }
   }
 }
