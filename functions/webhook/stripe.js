@@ -1,6 +1,18 @@
 import Stripe from 'stripe';
 
 export async function onRequestPost(context) {
+  async function createTransaction(db, session) {
+    const productId = session.metadata?.product_id;
+    const email = session.customer_details?.email;
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    await db.prepare(
+      "INSERT INTO transactions \
+      (uuid, product_type, product_id, amount, purchased_at, type, email) \
+      VALUES (?1, 'keychains', ?2, 1, ?3, 'stripe', ?4);"
+    ).bind(session.id, productId, currentTime, email).run();
+  }
+
   try {
     const { env, request } = context;
 
@@ -20,12 +32,7 @@ export async function onRequestPost(context) {
 
     switch (event.type) {
       case 'checkout.session.completed':
-        const session = event.data.object;
-        const email = session.customer_details?.email;
-        const productId = session.metadata?.product_id;
-        console.log(session);
-        console.log(email);
-        console.log(productId);
+        await createTransaction(env.DB, event.data.object);
         break;
       default:
         console.log(`Unhandled event type ${event.type}`);
