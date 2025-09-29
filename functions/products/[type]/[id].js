@@ -10,14 +10,11 @@ export async function onRequestGet(context) {
     const { env, params } = context;
     const { type, id } = params;
 
-    console.log(params);
-    console.log(type);
-
     let itemName;
     if (type == 'bonds') {
       itemName = formatId(id);
     } else {
-      const { results } = await env.DB.prepare("SELECT item FROM ?1 WHERE id = ?2").bind(type, id).all();
+      const { results } = await env.DB.prepare(`SELECT item FROM ${type} WHERE id = ?1`).bind(id).all();
       console.log(results);
     }
 
