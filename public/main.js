@@ -8,13 +8,13 @@ function preload(images) {
   });
 }
 
-async function createSession() {
+async function createSession(productId) {
   await fetch('/session', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ productId: 5 }),
+    body: JSON.stringify({ productId: productId }),
   });
 }
 
@@ -62,7 +62,7 @@ async function fetchProducts() {
       priceDiv.textContent = product.price;
 
       stripeLink = productDiv.querySelector('.stripe-link');
-      checkoutLink = await createSession();
+      checkoutLink = await createSession(product.id);
       stripeLink.addEventListener('click', () => {
         window.location.href = checkoutLink;
       });
