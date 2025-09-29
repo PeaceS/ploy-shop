@@ -7,7 +7,9 @@ export async function onRequestPost(context) {
     try {
         // const { priceId, productId } = await request.json(); 
         const priceId = 'price_1SCGLKJOHrAfEkInoFc57lCu';
-        const productId = 3;
+        const { productId } = await request.json();
+
+        console.log(productId);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
