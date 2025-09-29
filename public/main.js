@@ -169,8 +169,7 @@ async function fetchTransaction() {
       const date = new Date(dateInMilliseconds);
       const simpleOptions = {
         dateStyle: 'short',
-        timeStyle: 'short',
-        timeZoneName: 'short'
+        timeStyle: 'short'
       };
 
       dateTime.textContent = date.toLocaleString(undefined, simpleOptions);
