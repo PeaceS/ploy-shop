@@ -10,6 +10,7 @@ export async function onRequestPost(context) {
         const { productId } = await request.json();
 
         console.log(productId);
+        console.log(request.url.origin);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -31,6 +32,7 @@ export async function onRequestPost(context) {
         });
 
     } catch (error) {
+        console.log(error.message);
         return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
 }
