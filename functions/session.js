@@ -17,7 +17,7 @@ export async function onRequestPost(context) {
         });
         const mode = prices.data.length > 0 ? prices.data[0].livemode ? 'LIVE' : 'TEST' : 'UNKNOWN';
         console.log(`mode: ${mode}`);
-        console.log(prices.data.length);
+        console.log(prices.data[0]);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
