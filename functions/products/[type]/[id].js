@@ -15,7 +15,7 @@ export async function onRequestGet(context) {
       itemName = formatId(id);
     } else {
       const { results } = await env.DB.prepare(`SELECT item FROM ${type} WHERE id = ?1`).bind(id).all();
-      console.log(results);
+      itemName = results[0]?.item;
     }
 
     return new Response(itemName, {
