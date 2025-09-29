@@ -8,6 +8,18 @@ function preload(images) {
   });
 }
 
+async function createSession(priceId, productId) {
+  const response = await fetch('/session', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ priceId: priceId, productId: productId }),
+  });
+
+  return await response.json();
+}
+
 async function fetchProducts() {
   try {
     const response = await fetch('/products');
@@ -20,7 +32,7 @@ async function fetchProducts() {
     const productContainer = document.getElementById('product-container');
     const productTemplate = document.getElementById('product-template');
 
-    products.forEach(product => {
+    products.forEach(async product => {
       const productDiv = productTemplate.cloneNode(true);
       productDiv.removeAttribute('id');
 
@@ -51,8 +63,19 @@ async function fetchProducts() {
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
 
-      stripeLink = productDiv.querySelector('.stripe-link');
-      stripeLink.href += product.stripe_link;
+      const stripeLink = productDiv.querySelector('.stripe-link');
+      stripeLink.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const button = event.currentTarget;
+        const loader = button.querySelector('.loader');
+        loader.classList.add('loading');
+        try {
+          const checkoutLink = await createSession(product.stripe_price_id, product.id);
+          window.location.href = checkoutLink.url;
+        } finally {
+          loader.classList.remove('loading');
+        }
+      });
 
       const updateImage = (id) => {
         imageDiv = document.getElementById(id);
