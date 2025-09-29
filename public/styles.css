@@ -202,5 +202,9 @@ table.stock {
 }
 
 table#transaction {
-  font-size: 0.7em;
+  font-size: 0.8em;
+
+  .time {
+    padding-right: 10px;
+  }
 }

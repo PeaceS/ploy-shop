@@ -169,6 +169,7 @@ async function fetchTransaction() {
       };
 
       dateTime.textContent = date.toLocaleString(undefined, simpleOptions);
+      dateTime.classList.add('time');
       row.appendChild(dateTime);
 
       const item = document.createElement('td');
