@@ -12,6 +12,12 @@ export async function onRequestPost(context) {
         console.log(productId);
         console.log(request);
 
+        const prices = await stripe.prices.list({
+          limit: 10
+        });
+        const mode = prices.data.length > 0 ? prices.data[0].livemode ? 'LIVE' : 'TEST' : 'UNKNOWN';
+        console.log(`mode: ${mode}`);
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [{
