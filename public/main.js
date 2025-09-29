@@ -172,7 +172,7 @@ async function fetchTransaction() {
         timeStyle: 'short',  // e.g., 1:00 AM
       };
 
-      dateTime.textContent = date.toString(undefined, simpleOptions);
+      dateTime.textContent = date.toLocaleString(undefined, simpleOptions);
       row.appendChild(dateTime);
 
       transactionStockContainer.appendChild(row);
