@@ -63,12 +63,18 @@ async function fetchProducts() {
       priceDiv = productDiv.querySelector('.product-price');
       priceDiv.textContent = product.price;
 
-      stripeLink = productDiv.querySelector('.stripe-link');
-      stripeLink.addEventListener('click', async () => {
-        const loader = stripeLink.querySelector('.loader');
+      const stripeLink = productDiv.querySelector('.stripe-link');
+      stripeLink.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const button = event.currentTarget;
+        const loader = button.querySelector('.loader');
         loader.classList.add('loading');
-        const checkoutLink = await createSession(product.id);
-        window.location.href = checkoutLink.url;
+        try {
+          const checkoutLink = await createSession(product.id);
+          window.location.href = checkoutLink.url;
+        } finally {
+          loader.classList.remove('loading');
+        }
       });
 
       const updateImage = (id) => {
