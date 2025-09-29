@@ -9,13 +9,15 @@ function preload(images) {
 }
 
 async function createSession(productId) {
-  await fetch('/session', {
+  const response = await fetch('/session', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ productId: productId }),
   });
+
+  return await response.json();
 }
 
 async function fetchProducts() {
