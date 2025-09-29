@@ -168,8 +168,9 @@ async function fetchTransaction() {
       const dateInMilliseconds = transaction.purchased_at * 1000;
       const date = new Date(dateInMilliseconds);
       const simpleOptions = {
-        dateStyle: 'medium', // e.g., Jan 1, 2023
-        timeStyle: 'short',  // e.g., 1:00 AM
+        dateStyle: 'short',
+        timeStyle: 'short',
+        timeZoneName: 'short'
       };
 
       dateTime.textContent = date.toLocaleString(undefined, simpleOptions);
