@@ -43,14 +43,19 @@ function showPopup(product, cat_count, time, uuid) {
 
   const confirmBtn = popup.querySelector('#confirmBtn');
   if (confirmBtn) {
-    confirmBtn.addEventListener('click', () => {
+    if (confirmBtn._clickHandler) {
+      confirmBtn.removeEventListener('click', confirmBtn._clickHandler);
+    }
+    const handler = () => {
       const selected = popup.querySelector('input[name="color"]:checked');
       if (selected) {
         console.log(`${product} - ${selected.id}`);
       } else {
         console.log('No color selected');
       }
-    });
+    };
+    confirmBtn._clickHandler = handler;
+    confirmBtn.addEventListener('click', handler);
   }
 }
 
@@ -291,9 +296,6 @@ function handlePopup() {
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });
-
-  const confirmBtn = popup.querySelector('#confirmBtn');
-  confirmBtn.removeEventListener('click');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
