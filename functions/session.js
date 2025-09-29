@@ -5,17 +5,10 @@ export async function onRequestPost(context) {
     const stripe = new Stripe(env.STRIPE_SECRET_KEY);
 
     try {
-        // const { priceId, productId } = await request.json(); 
-        const priceId = 'price_1SCH1jJnhtwlv0mpGCbzAsb6';
-        const { productId } = await request.json();
-
-        console.log(productId);
-        console.log(request.url.origin);
+        const { priceId, productId } = await request.json(); 
 
         const protocol = 'https';
         const host = request.headers.get('host');
-        console.log(host);
-
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [{

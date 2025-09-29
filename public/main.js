@@ -8,13 +8,13 @@ function preload(images) {
   });
 }
 
-async function createSession(productId) {
+async function createSession(priceId, productId) {
   const response = await fetch('/session', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ productId: productId }),
+    body: JSON.stringify({ priceId: priceId, productId: productId }),
   });
 
   return await response.json();
@@ -70,7 +70,7 @@ async function fetchProducts() {
         const loader = button.querySelector('.loader');
         loader.classList.add('loading');
         try {
-          const checkoutLink = await createSession(product.id);
+          const checkoutLink = await createSession(product.stripe_price_id, product.id);
           window.location.href = checkoutLink.url;
         } finally {
           loader.classList.remove('loading');
