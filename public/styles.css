@@ -220,6 +220,10 @@ a {
       border: none;
       font-weight: bold;
       margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
 
       .loader {
         border: 3px solid #f3f3f3; /* Light grey border */
@@ -227,14 +231,12 @@ a {
         border-radius: 50%;
         width: 9px;
         height: 9px;
-        
+
         /* Initially hide the spinner */
-        display: none; 
-        
+        display: none;
+
         /* Animation definition */
         animation: spin 1s linear infinite;
-
-        margin-right: 5px; 
 
         &.loading {
           display: inline-block;
