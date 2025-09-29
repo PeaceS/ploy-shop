@@ -62,8 +62,8 @@ async function fetchProducts() {
       priceDiv.textContent = product.price;
 
       stripeLink = productDiv.querySelector('.stripe-link');
-      checkoutLink = await createSession(product.id);
-      stripeLink.addEventListener('click', () => {
+      stripeLink.addEventListener('click', async () => {
+        const checkoutLink = await createSession(product.id);
         console.log(checkoutLink);
         window.location.href = checkoutLink;
       });
