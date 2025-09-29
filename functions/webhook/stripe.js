@@ -6,9 +6,11 @@ export async function onRequestPost(context) {
     const email = session.customer_details?.email;
     const currentTime = Math.floor(Date.now() / 1000);
 
+    console.log(session);
+
     await db.prepare(
       "INSERT INTO transactions \
-      (uuid, product_type, product_id, amount, purchased_at, type, email) \
+      (uuid, product_type, product_id, price, purchased_at, type, email) \
       VALUES (?1, 'keychains', ?2, 1, ?3, 'stripe', ?4);"
     ).bind(session.id, productId, currentTime, email).run();
   }
