@@ -259,11 +259,13 @@ async function fetchTransaction() {
 
       const item = document.createElement('td');
       let itemName;
+      let categoriesCount;
 
       if (transaction.product_type == 'keychains') {
         const productRes = await fetch(`/products/${transaction.product_type}/${transaction.product_id}`);
         const productDetail = await productRes.json();
         itemName = productDetail.item;
+        categoriesCount = productDetail.categories_count;
       } else {
         itemName = 'The Bond';
       }
@@ -279,7 +281,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        showPopup(itemName, dateTime, transaction.uuid, productDetail.categories_count);
+        showPopup(itemName, dateTime, transaction.uuid, categoriesCount);
       });
     }
 
