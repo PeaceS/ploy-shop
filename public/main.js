@@ -269,7 +269,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        showPopup(productDetail.item, productDetail.categories_count, dateTime, productDetail.uuid);
+        showPopup(productDetail.item, productDetail.categories_count, dateTime, transaction.uuid);
       });
     }
 
