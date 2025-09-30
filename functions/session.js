@@ -19,7 +19,8 @@ export async function onRequestPost(context) {
             success_url: `${protocol}://${host}/success`,
             cancel_url: `${protocol}://${host}/cancel`,
             metadata: {
-                product_id: productId 
+                product_id: productId,
+                product_type: 'keychains'
             },
         });
 
