@@ -1,4 +1,4 @@
-function showPopup(product, cat_count, time, uuid) {
+function showPopup(product, time, uuid, cat_count) {
   async function fetchKeychainId(name) {
     const result = await fetch(`/keychains?search=${name}`);
     const keychainData = await result.json();
@@ -27,39 +27,41 @@ function showPopup(product, cat_count, time, uuid) {
   const subTitle = popup.querySelector('#subTitle');
   subTitle.textContent = typeof time === 'string' ? time : time.textContent;
 
-  const colors = [
-    'Magenta',
-    'Green',
-    'Blue',
-    'Dark brown',
-    'Red brown',
-    'White',
-    'Nude'
-  ];
+  if (cat_count) {
+    const colors = [
+      'Magenta',
+      'Green',
+      'Blue',
+      'Dark brown',
+      'Red brown',
+      'White',
+      'Nude'
+    ];
 
-  const list = popup.querySelector('#list');
-  if (!list) return;
-  while (list.firstChild) list.removeChild(list.firstChild);
+    const list = popup.querySelector('#list');
+    if (!list) return;
+    while (list.firstChild) list.removeChild(list.firstChild);
 
-  const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, cat_count)));
-  limitedColors.forEach((color) => {
-    const id = color;
-    const li = document.createElement('li');
+    const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, cat_count)));
+    limitedColors.forEach((color) => {
+      const id = color;
+      const li = document.createElement('li');
 
-    const label = document.createElement('label');
-    label.setAttribute('for', id);
-    label.textContent = color;
+      const label = document.createElement('label');
+      label.setAttribute('for', id);
+      label.textContent = color;
 
-    const input = document.createElement('input');
-    input.type = 'radio';
-    input.name = 'color';
-    input.id = id;
-    input.value = color;
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'color';
+      input.id = id;
+      input.value = color;
 
-    li.appendChild(input);
-    li.appendChild(label);
-    list.appendChild(li);
-  });
+      li.appendChild(input);
+      li.appendChild(label);
+      list.appendChild(li);
+    });
+  }
 
   const confirmBtn = popup.querySelector('#confirmBtn');
   if (confirmBtn) {
@@ -256,9 +258,17 @@ async function fetchTransaction() {
       row.appendChild(dateTime);
 
       const item = document.createElement('td');
-      const productRes = await fetch(`/products/${transaction.product_type}/${transaction.product_id}`);
-      const productDetail = await productRes.json();
-      item.textContent = productDetail.item;
+      let itemName;
+
+      if (transaction.product_type == 'keychains') {
+        const productRes = await fetch(`/products/${transaction.product_type}/${transaction.product_id}`);
+        const productDetail = await productRes.json();
+        itemName = productDetail.item;
+      } else {
+        itemName = 'The Bond';
+      }
+
+      item.textContent = itemName;
       row.appendChild(item);
 
       const check = document.createElement('td');
@@ -269,7 +279,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        showPopup(productDetail.item, productDetail.categories_count, dateTime, transaction.uuid);
+        showPopup(itemName, dateTime, transaction.uuid, productDetail.categories_count);
       });
     }
 
