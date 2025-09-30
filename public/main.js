@@ -51,8 +51,8 @@ function showPopup(product, cat_count, time, uuid) {
       if (selected) {
         const productName = `${product} - ${selected.id}`;
         const result = await fetch(`/keychains?search=${productName}`)
-        const product = await result.json();
-        console.log(product);
+        const keychainData = await result.json();
+        console.log(keychainData);
       } else {
         console.log('No color selected');
       }
