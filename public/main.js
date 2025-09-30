@@ -1,4 +1,4 @@
-function showPopup(product, time, uuid, cat_count) {
+function showPopup(product, time, uuid, catCount) {
   async function fetchKeychainId(name) {
     const result = await fetch(`/keychains?search=${name}`);
     const keychainData = await result.json();
@@ -27,7 +27,8 @@ function showPopup(product, time, uuid, cat_count) {
   const subTitle = popup.querySelector('#subTitle');
   subTitle.textContent = typeof time === 'string' ? time : time.textContent;
 
-  if (cat_count) {
+  console.log(catCount);
+  if (catCount) {
     const colors = [
       'Magenta',
       'Green',
