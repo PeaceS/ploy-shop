@@ -169,34 +169,101 @@ table.stock {
     text-align: center;
     padding-bottom: 10px;
   }
+}
 
-  .button {
-    margin: 5px 0;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border: 2px solid #3498db; /* A solid border with a nice blue color */
-    border-radius: 8px; /* Rounded corners for a softer look */
-    background-color: #3498db;
-    color: #ffffff; /* White text color for good contrast */
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  /* Hover state: what happens when you mouse over the button */
-  .button:hover {
+
+.button {
+  margin: 5px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid #3498db; /* A solid border with a nice blue color */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  background-color: #3498db;
+  color: #ffffff; /* White text color for good contrast */
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+  &:hover {
     background-color: #2980b9; /* A slightly darker blue */
     border-color: #2980b9;
     color: #ffffff;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
   }
-  
-  /* Active state: what happens when you click the button */
-  .button:active {
+
+  &:active {
     transform: translateY(1px); /* A small downward push to simulate a click */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow to show it's "pressed" */
+  }
+}
+
+table#transaction {
+  font-size: 0.8em;
+
+  .time {
+    padding-right: 10px;
+  }
+
+  .check {
+    padding-left: 5px;
+  }
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(0, 0, 0, 0.65);
+
+  div {
+    background-color: white;
+    position: fixed;
+    top: 15%;
+    right: 10%;
+    bottom: 15%;
+    left: 10%;
+    z-index: 1;
+    padding: 25px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+
+    h2, h5 {
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 0;
+    }
+
+    h5 {
+      margin: 0;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 30px 0;
+
+      li input {
+        margin-right: 10px;
+      }
+    }
+
+    button {
+      margin-top: auto;
+    }
+
+    #closeBtn {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
   }
 }

@@ -1,3 +1,88 @@
+function showPopup(product, cat_count, time, uuid) {
+  async function fetchKeychainId(name) {
+    const result = await fetch(`/keychains?search=${name}`);
+    const keychainData = await result.json();
+  
+    return(keychainData[0]?.id);
+  }
+  
+  async function confirmTransaction(uuid) {
+    const response = await fetch(`/transactions/${uuid}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  }
+  
+  const popup = document.getElementById('popup');
+  popup.classList.remove('hide');
+
+  const title = popup.querySelector('#title');
+  title.textContent = product;
+  const subTitle = popup.querySelector('#subTitle');
+  subTitle.textContent = typeof time === 'string' ? time : time.textContent;
+
+  const colors = [
+    'Magenta',
+    'Green',
+    'Blue',
+    'Dark brown',
+    'Red brown',
+    'White',
+    'Nude'
+  ];
+
+  const list = popup.querySelector('#list');
+  if (!list) return;
+  while (list.firstChild) list.removeChild(list.firstChild);
+
+  const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, cat_count)));
+  limitedColors.forEach((color) => {
+    const id = color;
+    const li = document.createElement('li');
+
+    const label = document.createElement('label');
+    label.setAttribute('for', id);
+    label.textContent = color;
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'color';
+    input.id = id;
+    input.value = color;
+
+    li.appendChild(input);
+    li.appendChild(label);
+    list.appendChild(li);
+  });
+
+  const confirmBtn = popup.querySelector('#confirmBtn');
+  if (confirmBtn) {
+    if (confirmBtn._clickHandler) {
+      confirmBtn.removeEventListener('click', confirmBtn._clickHandler);
+    }
+    const handler = async () => {
+      const selected = popup.querySelector('input[name="color"]:checked');
+      if (selected) {
+        const productName = `${product} - ${selected.id}`;
+
+        const keychainId = await fetchKeychainId(productName);
+        confirmTransaction(uuid);
+        soldFn('keychains', keychainId);
+      } else {
+        console.log('No color selected');
+      }
+    };
+    confirmBtn._clickHandler = handler;
+    confirmBtn.addEventListener('click', handler);
+  }
+}
+
 async function isEnabled(flag) {
   const response = await fetch(`/config/${flag}`);
 
@@ -6,7 +91,6 @@ async function isEnabled(flag) {
   }
 
   const config = await response.json(); 
-  console.log(config.isEnabled);
   return config.isEnabled;
 }
 
@@ -143,6 +227,57 @@ async function fetchTheBondStock(id) {
   }
 }
 
+async function fetchTransaction() {
+  try {
+    const endpoint = '/transactions';
+    const response = await fetch(endpoint);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const transactions = await response.json();
+    const transactionStockContainer = document.getElementById('transaction');
+
+    for (const transaction of transactions) {
+      const row = document.createElement('tr');
+
+      const dateTime = document.createElement('td');
+
+      const dateInMilliseconds = transaction.purchased_at * 1000;
+      const date = new Date(dateInMilliseconds);
+      const simpleOptions = {
+        dateStyle: 'short',
+        timeStyle: 'short'
+      };
+
+      dateTime.textContent = date.toLocaleString('th-TH', simpleOptions);
+      dateTime.classList.add('time');
+      row.appendChild(dateTime);
+
+      const item = document.createElement('td');
+      const productRes = await fetch(`/products/${transaction.product_type}/${transaction.product_id}`);
+      const productDetail = await productRes.json();
+      item.textContent = productDetail.item;
+      row.appendChild(item);
+
+      const check = document.createElement('td');
+      check.textContent = '✓';
+      check.classList.add('check');
+      row.appendChild(check);
+
+      transactionStockContainer.appendChild(row);
+
+      row.addEventListener('click', () => {
+        showPopup(productDetail.item, productDetail.categories_count, dateTime, transaction.uuid);
+      });
+    }
+
+  } catch (error) {
+    console.error('Failed to fetch keychains:', error);
+  }
+}
+
 async function bindTheBondSearch() {
   const searchInput = document.getElementById('search-the-bond');
   let timeoutId;
@@ -177,9 +312,20 @@ async function bindKeychainSearch() {
   });
 }
 
+function handlePopup() {
+  const popup = document.getElementById('popup');
+  const closeBtn = popup.querySelector('#closeBtn');
+
+  closeBtn.addEventListener('click', () => {
+    popup.classList.add('hide');
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+  fetchTransaction();
   fetchTheBondStock();
   fetchKeychainStock();
   bindTheBondSearch();
   bindKeychainSearch();
+  handlePopup();
 });

@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "wrangler pages dev public",
+    "build": "npx wrangler pages functions build",
+    "deploy": "wrangler pages deploy ./public"
+  },
+  "dependencies": {
+    "stripe": "^18.5.0"
+  }
+}
