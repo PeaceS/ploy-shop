@@ -1,4 +1,24 @@
 function showPopup(product, cat_count, time, uuid) {
+  async function fetchKeychainId(name) {
+    const result = await fetch(`/keychains?search=${name}`);
+    const keychainData = await result.json();
+  
+    return(keychainData[0]?.id);
+  }
+  
+  async function confirmTransaction(uuid) {
+    const response = await fetch(`/transactions/${uuid}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  }
+  
   const popup = document.getElementById('popup');
   popup.classList.remove('hide');
 
@@ -50,9 +70,10 @@ function showPopup(product, cat_count, time, uuid) {
       const selected = popup.querySelector('input[name="color"]:checked');
       if (selected) {
         const productName = `${product} - ${selected.id}`;
-        const result = await fetch(`/keychains?search=${productName}`)
-        const keychainData = await result.json();
-        console.log(keychainData);
+
+        const keychainId = await fetchKeychainId(productName);
+        confirmTransaction(uuid);
+        soldFn('keychains', keychainId);
       } else {
         console.log('No color selected');
       }
@@ -248,7 +269,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        showPopup(productDetail.item, productDetail.categories_count, dateTime, transaction.uuid);
+        showPopup(productDetail.item, productDetail.categories_count, dateTime, productDetail.uuid);
       });
     }
 
