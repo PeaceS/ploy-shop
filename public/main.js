@@ -46,10 +46,13 @@ function showPopup(product, cat_count, time, uuid) {
     if (confirmBtn._clickHandler) {
       confirmBtn.removeEventListener('click', confirmBtn._clickHandler);
     }
-    const handler = () => {
+    const handler = async () => {
       const selected = popup.querySelector('input[name="color"]:checked');
       if (selected) {
-        console.log(`${product} - ${selected.id}`);
+        const productName = `${product} - ${selected.id}`;
+        console.log(productName);
+        const result = await fetch(`/keychains?search=${productName}`)
+        console.log(result);
       } else {
         console.log('No color selected');
       }
