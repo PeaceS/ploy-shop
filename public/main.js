@@ -50,9 +50,9 @@ function showPopup(product, cat_count, time, uuid) {
       const selected = popup.querySelector('input[name="color"]:checked');
       if (selected) {
         const productName = `${product} - ${selected.id}`;
-        console.log(productName);
         const result = await fetch(`/keychains?search=${productName}`)
-        console.log(result);
+        const product = await result.json();
+        console.log(product);
       } else {
         console.log('No color selected');
       }
@@ -70,7 +70,6 @@ async function isEnabled(flag) {
   }
 
   const config = await response.json(); 
-  console.log(config.isEnabled);
   return config.isEnabled;
 }
 
