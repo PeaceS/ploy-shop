@@ -68,6 +68,8 @@ function showPopup(product, time, uuid, catCount) {
 
     const input = document.createElement('input');
     input.type = 'tel';
+    input.id = 'the-bond-id';
+    input.maxLength = 3;
 
     inputBox.appendChild(prefix);
     inputBox.appendChild(input);
@@ -340,10 +342,21 @@ async function bindKeychainSearch() {
 function handlePopup() {
   const popup = document.getElementById('popup');
   const closeBtn = popup.querySelector('#closeBtn');
+  const theBondId = popup.querySelector('#the-bond-id');
 
   closeBtn.addEventListener('click', () => {
     popup.classList.add('hide');
   });
+
+  theBondId.addEventListener('blur', (event) => {
+    let value = event.target.value;
+    value = value.replace(/\D/g, '');
+
+    if (value.length > 0 && value.length < 3) {
+      const paddedValue = value.padStart(TARGET_LENGTH, '0');
+      event.target.value = paddedValue;
+    }
+});
 }
 
 document.addEventListener('DOMContentLoaded', function() {

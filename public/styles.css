@@ -267,6 +267,8 @@ table#transaction {
       padding: 5px 10px;
       font-family: "Gilroy", sans-serif;
       font-weight: bold;
+      margin-right: 40px;
+      font-size: 19px;
 
       .prefix:before {
         content: "TB-";
@@ -277,6 +279,8 @@ table#transaction {
         outline: none;
         font-family: "Gilroy", sans-serif;
         font-weight: bold;
+        width: 35px;
+        font-size: 19px;
       }
     }
 
