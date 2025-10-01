@@ -1,4 +1,4 @@
-function showPopup(product, time, uuid, catCount) {
+function showPopup(product, time, uuid, catCount, email) {
   async function fetchKeychainId(name) {
     const result = await fetch(`/keychains?search=${name}`);
     const keychainData = await result.json();
@@ -103,7 +103,8 @@ function showPopup(product, time, uuid, catCount) {
         confirmTransaction(uuid);
         soldFn('keychains', keychainId);
       } else {
-        console.log('No color selected');
+        const theBondId = document.getElementById('the-bond-id').value;
+        soldFn('bonds', theBondId, email);
       }
     };
     confirmBtn._clickHandler = handler;
@@ -308,7 +309,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        showPopup(itemName, dateTime, transaction.uuid, categoriesCount);
+        showPopup(itemName, dateTime, transaction.uuid, categoriesCount, transaction.email);
       });
     }
 
