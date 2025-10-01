@@ -71,6 +71,7 @@ function showPopup(product, time, uuid, catCount) {
     input.type = 'tel';
     input.id = 'the-bond-id';
     input.maxLength = TARGET_LENGTH;
+    input.focus();
 
     inputBox.appendChild(prefix);
     inputBox.appendChild(input);
