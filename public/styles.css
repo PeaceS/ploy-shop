@@ -263,11 +263,11 @@ table#transaction {
       align-items: center;
       border: 1px solid black;
       border-radius: 3px;
-      width: 130px;
+      width: 70px;
       padding: 5px 10px;
       font-family: "Gilroy", sans-serif;
       font-weight: bold;
-      margin-right: 40px;
+      margin-left: 40px;
       font-size: 19px;
 
       .prefix:before {
