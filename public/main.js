@@ -104,6 +104,7 @@ function showPopup(product, time, uuid, catCount, email) {
         soldFn('keychains', keychainId);
       } else {
         const theBondId = document.getElementById('the-bond-id').value;
+        confirmTransaction(uuid);
         soldFn('bonds', theBondId, email);
       }
     };
