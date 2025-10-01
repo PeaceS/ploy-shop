@@ -258,6 +258,28 @@ table#transaction {
       margin-top: auto;
     }
 
+    .input-box {
+      display: flex;
+      align-items: center;
+      border: 1px solid black;
+      border-radius: 3px;
+      width: 130px;
+      padding: 5px 10px;
+      font-family: "Gilroy", sans-serif;
+      font-weight: bold;
+
+      .prefix:before {
+        content: "TB-";
+      }
+
+      input {
+        border: none;
+        outline: none;
+        font-family: "Gilroy", sans-serif;
+        font-weight: bold;
+      }
+    }
+
     #closeBtn {
       width: 100%;
       display: inline-block;
