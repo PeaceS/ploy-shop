@@ -27,6 +27,7 @@ function showPopup(product, time, uuid, catCount) {
   const subTitle = popup.querySelector('#subTitle');
   subTitle.textContent = typeof time === 'string' ? time : time.textContent;
 
+  console.log(catCount);
   if (catCount !== undefined && catCount > 0) {
     const colors = [
       'Magenta',
@@ -282,6 +283,7 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
+        console.log(categoriesCount)
         showPopup(itemName, dateTime, transaction.uuid, categoriesCount);
       });
     }
