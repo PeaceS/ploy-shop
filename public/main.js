@@ -18,7 +18,7 @@ function showPopup(product, time, uuid, catCount) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   }
-  
+
   const popup = document.getElementById('popup');
   popup.classList.remove('hide');
 
@@ -27,7 +27,8 @@ function showPopup(product, time, uuid, catCount) {
   const subTitle = popup.querySelector('#subTitle');
   subTitle.textContent = typeof time === 'string' ? time : time.textContent;
 
-  console.log(catCount);
+  const list = popup.querySelector('#list');
+  while (list.firstChild) list.removeChild(list.firstChild);
   if (catCount !== undefined && catCount > 0) {
     const colors = [
       'Magenta',
@@ -38,11 +39,6 @@ function showPopup(product, time, uuid, catCount) {
       'White',
       'Nude'
     ];
-
-    const list = popup.querySelector('#list');
-    if (!list) return;
-    while (list.firstChild) list.removeChild(list.firstChild);
-
     const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, catCount)));
     limitedColors.forEach((color) => {
       const id = color;
@@ -62,6 +58,21 @@ function showPopup(product, time, uuid, catCount) {
       li.appendChild(label);
       list.appendChild(li);
     });
+  } else {
+    const li = document.createElement('li');
+    const inputBox = document.createElement('div');
+    inputBox.classList.add('input-box');
+
+    const prefix = document.createElement('span');
+    prefix.classList.add('prefix');
+
+    const input = document.createElement('input');
+    input.type = 'tel';
+
+    inputBox.appendChild(prefix);
+    inputBox.appendChild(input);
+    li.appendChild(inputBox);
+    list.appendChild(li);
   }
 
   const confirmBtn = popup.querySelector('#confirmBtn');
@@ -283,7 +294,6 @@ async function fetchTransaction() {
       transactionStockContainer.appendChild(row);
 
       row.addEventListener('click', () => {
-        console.log(categoriesCount)
         showPopup(itemName, dateTime, transaction.uuid, categoriesCount);
       });
     }
