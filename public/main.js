@@ -27,8 +27,7 @@ function showPopup(product, time, uuid, catCount) {
   const subTitle = popup.querySelector('#subTitle');
   subTitle.textContent = typeof time === 'string' ? time : time.textContent;
 
-  console.log(catCount);
-  if (catCount) {
+  if (catCount !== undefined && catCount > 0) {
     const colors = [
       'Magenta',
       'Green',
@@ -43,7 +42,7 @@ function showPopup(product, time, uuid, catCount) {
     if (!list) return;
     while (list.firstChild) list.removeChild(list.firstChild);
 
-    const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, cat_count)));
+    const limitedColors = colors.slice(0, Math.max(0, Math.min(colors.length, catCount)));
     limitedColors.forEach((color) => {
       const id = color;
       const li = document.createElement('li');
