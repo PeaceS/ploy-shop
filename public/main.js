@@ -268,6 +268,7 @@ async function fetchTransaction() {
         categoriesCount = productDetail.categories_count;
       } else {
         itemName = 'The Bond';
+        categoriesCount = undefined;
       }
 
       item.textContent = itemName;
