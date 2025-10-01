@@ -66,10 +66,11 @@ function showPopup(product, time, uuid, catCount) {
     const prefix = document.createElement('span');
     prefix.classList.add('prefix');
 
+    const TARGET_LENGTH = 3;
     const input = document.createElement('input');
     input.type = 'tel';
     input.id = 'the-bond-id';
-    input.maxLength = 3;
+    input.maxLength = TARGET_LENGTH;
 
     inputBox.appendChild(prefix);
     inputBox.appendChild(input);
@@ -80,7 +81,7 @@ function showPopup(product, time, uuid, catCount) {
       let value = event.target.value;
       value = value.replace(/\D/g, '');
 
-      if (value.length > 0 && value.length < 3) {
+      if (value.length > 0 && value.length < TARGET_LENGTH) {
         const paddedValue = value.padStart(TARGET_LENGTH, '0');
         event.target.value = paddedValue;
       }
