@@ -6,12 +6,13 @@ function showPopup(product, time, uuid, catCount, email) {
     return(keychainData[0]?.id);
   }
   
-  async function confirmTransaction(uuid) {
+  async function confirmTransaction(uuid, productId) {
     const response = await fetch(`/transactions/${uuid}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-      }
+      },
+      body: JSON.stringify({ productId: productId }),
     });
   
     if (!response.ok) {
@@ -100,11 +101,11 @@ function showPopup(product, time, uuid, catCount, email) {
         const productName = `${product} - ${selected.id}`;
 
         const keychainId = await fetchKeychainId(productName);
-        confirmTransaction(uuid);
+        confirmTransaction(uuid, keychainId);
         soldFn('keychains', keychainId);
       } else {
         const theBondId = document.getElementById('the-bond-id').value;
-        confirmTransaction(uuid);
+        confirmTransaction(uuid, theBondId);
         soldFn('bonds', theBondId, email);
       }
     };
