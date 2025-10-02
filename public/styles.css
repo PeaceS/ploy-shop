@@ -256,14 +256,14 @@ a {
     }
 
     .via-stripe {
-      font-size: 0.3em;
+      font-size: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
 
       .stripe-icon {
-        width: 25px;
-        height: 12px;
+        width: 30px;
+        height: 14px;
       }
     }
   }
