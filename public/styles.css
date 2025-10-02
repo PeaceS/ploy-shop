@@ -262,8 +262,9 @@ a {
       justify-content: center;
 
       .stripe-icon {
-        width: 25px;
-        height: 12px;
+        width: 30px;
+        height: 14px;
+        padding-top: 1.1px;
       }
     }
   }
