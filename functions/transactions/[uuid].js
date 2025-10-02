@@ -1,8 +1,8 @@
 export async function onRequestPut(context) {
-  async function confirm(uuid, db) {
+  async function confirm(uuid, productId, db) {
     const { success } = await db.prepare(
-      "UPDATE transactions SET status = 'success' WHERE uuid = ?1"
-    ).bind(uuid).run();
+      "UPDATE transactions SET product_id = ?1, status = 'success' WHERE uuid = ?2"
+    ).bind(productId, uuid).run();
 
     if (!success) {
       return new Response(JSON.stringify({ message: "Update failed or no records found for the given uuid." }), {
@@ -13,14 +13,16 @@ export async function onRequestPut(context) {
   }
 
   try {
-    const { env, params } = context;
+    const { env, params, request } = context;
     const uuid = params.uuid;
+    const requestBody = await request.json();
+    const productId = requestBody.productId;
 
     if (!uuid) {
       return new Response("uuid is required.", { status: 400 });
     }
 
-    const specificUpdateResult = await confirm(uuid, env.DB);
+    const specificUpdateResult = await confirm(uuid, productId, env.DB);
     if (specificUpdateResult) {
       return specificUpdateResult;
     }
