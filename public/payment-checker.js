@@ -18,10 +18,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const urlParams = new URLSearchParams(window.location.search);
   const uuid = urlParams.get('session_id');
   const transaction = await fetchTransaction(uuid);
+  const product = {
+    'keychains': 'Bubble Memory',
+    'bonds': 'The Bond'
+  }
 
   if (transaction != null) {
     const divProduct = document.getElementById('product');
-    divProduct.textContent = transaction.product_type;
+    divProduct.textContent = product[transaction.product_type];
 
     const divPrice = document.getElementById('price');
     divPrice.textContent = transaction.price / 100;
