@@ -39,7 +39,7 @@ export async function onRequestPost(context) {
         await createTransaction(env.DB, event.data.object);
         break;
       default:
-        console.log(`Unhandled event type ${event.type}`);
+        console.log(`Unhandled event type ${event.type} ...`);
     }
 
     return new Response('ok', { status: 200 });
