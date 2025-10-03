@@ -14,8 +14,10 @@ async function fetchTransaction(uuid) {
   }
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const uuid = urlParams.get('session_id');
-const transaction = await fetchTransaction(uuid);
+document.addEventListener('DOMContentLoaded', async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const uuid = urlParams.get('session_id');
+  const transaction = await fetchTransaction(uuid);
 
-console.log(transaction);
+  console.log(transaction);
+});
