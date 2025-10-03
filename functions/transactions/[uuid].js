@@ -8,8 +8,6 @@ export async function onRequestGet(context) {
     }
 
     const result = await env.DB.prepare("SELECT * FROM transactions WHERE uuid = ?1").bind(uuid).first();
-    console.log(result);
-
     return new Response(JSON.stringify({ transaction: result }), {
       headers: { "Content-Type": "application/json" }
     });

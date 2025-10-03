@@ -7,7 +7,7 @@ async function fetchTransaction(uuid) {
     }
 
     const { transaction: transaction } = await response.json();
-    console.log(transaction);
+    return(transaction);
 
   } catch (error) {
     console.error('Failed to fetch transaction:', error);
@@ -16,4 +16,6 @@ async function fetchTransaction(uuid) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const uuid = urlParams.get('session_id');
-fetchTransaction(uuid);
+const transaction = fetchTransaction(uuid);
+
+console.log(transaction);
