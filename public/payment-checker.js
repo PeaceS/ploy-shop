@@ -16,6 +16,6 @@ async function fetchTransaction(uuid) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const uuid = urlParams.get('session_id');
-const transaction = fetchTransaction(uuid);
+const transaction = await fetchTransaction(uuid);
 
 console.log(transaction);
