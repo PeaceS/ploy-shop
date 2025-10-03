@@ -19,5 +19,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const uuid = urlParams.get('session_id');
   const transaction = await fetchTransaction(uuid);
 
-  console.log(transaction);
+  const divProduct = document.getElementById('product');
+  divProduct.textContent = transaction.product_type;
+
+  const divPrice = document.getElementById('price');
+  divPrice.textContent = transaction.price / 100;
 });
