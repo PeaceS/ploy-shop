@@ -19,9 +19,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   const uuid = urlParams.get('session_id');
   const transaction = await fetchTransaction(uuid);
 
-  const divProduct = document.getElementById('product');
-  divProduct.textContent = transaction.product_type;
+  if (transaction != null) {
+    const divProduct = document.getElementById('product');
+    divProduct.textContent = transaction.product_type;
 
-  const divPrice = document.getElementById('price');
-  divPrice.textContent = transaction.price / 100;
+    const divPrice = document.getElementById('price');
+    divPrice.textContent = transaction.price / 100;
+    divPrice.classList.remove('hide');
+  } else {
+    const title = document.getElementById('title');
+    title.textContent = 'Something went wrong';
+
+    const description = document.getElementById('description');
+    description.textContent = 'Please allow us to perform further checks.'
+  }
 });
