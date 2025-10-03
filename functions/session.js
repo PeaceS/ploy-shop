@@ -21,7 +21,8 @@ export async function onRequestPost(context) {
             success_url: `${protocol}://${host}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${protocol}://${host}/cancel`,
             metadata: {
-                product_id: productId 
+                product_type: 'keychains',
+                product_id: productId
             },
         });
 
