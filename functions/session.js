@@ -5,7 +5,9 @@ export async function onRequestPost(context) {
     const stripe = new Stripe(env.STRIPE_SECRET_KEY);
 
     try {
-        const { priceId, productId } = await request.json(); 
+        const requestBody = await request.json();
+        const productId = requestBody.productId;
+        let priceId = env.PRICE_ID || requestBody.priceId;
 
         const protocol = 'https';
         const host = request.headers.get('host');
@@ -16,11 +18,11 @@ export async function onRequestPost(context) {
                 quantity: 1,
             }],
             mode: 'payment',
-            success_url: `${protocol}://${host}/success`,
+            success_url: `${protocol}://${host}/success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${protocol}://${host}/cancel`,
             metadata: {
-                product_id: productId,
-                product_type: 'keychains'
+                product_type: 'keychains',
+                product_id: productId
             },
         });
 

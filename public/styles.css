@@ -194,6 +194,8 @@ a {
   .product-details {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    justify-content: center;
     align-items: center;
 
     .product-price {
@@ -226,6 +228,14 @@ a {
       justify-content: center;
       gap: 5px;
 
+      .icon {
+        width: 15px;
+        height: 15px;
+        background-image: url('images/icons/credit-card.svg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+
       .loader {
         border: 3px solid #f3f3f3; /* Light grey border */
         border-top: 3px solid #3498db; /* Blue border for the spinning part */
@@ -242,6 +252,18 @@ a {
         &.loading {
           display: inline-block;
         }
+      }
+    }
+
+    .via-stripe {
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .stripe-icon {
+        width: 30px;
+        height: 14px;
       }
     }
   }

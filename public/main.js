@@ -68,12 +68,16 @@ async function fetchProducts() {
         event.preventDefault();
         const button = event.currentTarget;
         const loader = button.querySelector('.loader');
+        const icon = button.querySelector('.icon');
+
         loader.classList.add('loading');
+        icon.classList.add('hide');
         try {
           const checkoutLink = await createSession(product.stripe_price_id, product.id);
           window.location.href = checkoutLink.url;
         } finally {
           loader.classList.remove('loading');
+          icon.classList.remove('hide');
         }
       });
 
