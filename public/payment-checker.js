@@ -6,7 +6,8 @@ async function fetchTransaction(uuid) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const transaction = await response.json();
+    const { transaction: transaction } = await response.json();
+    console.log(transaction);
 
   } catch (error) {
     console.error('Failed to fetch transaction:', error);

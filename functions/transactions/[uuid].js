@@ -7,9 +7,10 @@ export async function onRequestGet(context) {
       return new Response("uuid is required.", { status: 400 });
     }
 
-    const { results } = await env.DB.prepare("SELECT * FROM transactions WHERE display = true ORDER BY stock DESC").all();
+    const { result: transaction } = await env.DB.prepare("SELECT * FROM transactions WHERE uuid = ?1").bind(uuid).first();
+    console.log(transaction);
 
-    return new Response(JSON.stringify({ message: "The transaction updated successfully." }), {
+    return new Response(JSON.stringify({ transaction: transaction }), {
       headers: { "Content-Type": "application/json" }
     });
 
