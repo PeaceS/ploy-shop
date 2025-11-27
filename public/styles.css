@@ -199,6 +199,10 @@ a {
       /* &::before {
         content: "€";
       } */
+
+      &.disabled {
+        font-style: italic;
+      }
     }
 
     .vat {
