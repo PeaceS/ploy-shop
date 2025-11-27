@@ -93,8 +93,19 @@ a {
       }
     }
 
+    border: 3px solid #fff;
+    background-color: #ffcd05;
+    background-image: repeating-linear-gradient(
+        130deg,              /* 45 degree angle for diagonal */
+        #ffffff 0,          /* White, starts at 0% */
+        #ffffff 3px,        /* White, ends at 1px (thin line) */
+        #ffcd05 1px,        /* Yellow, starts at 1px */
+        #ffcd05 10px        /* Yellow, ends at 10px (width of the stripe) */
+    );
+
     button {
       display: inline-block;
+      background-color: #fff;
       padding: 8px 20px; /* Adjust padding for mobile finger-tap area */
       margin-top: 15px; /* Spacing below the title */
 
