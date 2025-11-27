@@ -34,6 +34,7 @@ async function fetchProducts() {
 
     products.forEach(async product => {
       const productDiv = productTemplate.cloneNode(true);
+      const isDisabled = productDiv.classList.contains('disabled');
       productDiv.removeAttribute('id');
 
       titleDiv = productDiv.querySelector('.product-title');
@@ -60,8 +61,10 @@ async function fetchProducts() {
       descriptionDiv = productDiv.querySelector('.product-description');
       descriptionDiv.textContent = product.description;
 
-      priceDiv = productDiv.querySelector('.product-price');
-      // priceDiv.textContent = product.price;
+      if (!isDisabled) {
+        priceDiv = productDiv.querySelector('.product-price');
+        priceDiv.textContent = product.price;
+      }
 
       const stripeLink = productDiv.querySelector('.stripe-link');
       stripeLink.addEventListener('click', async (event) => {
@@ -73,9 +76,12 @@ async function fetchProducts() {
         loader.classList.add('loading');
         icon.classList.add('hide');
         try {
-          // const checkoutLink = await createSession(product.stripe_price_id, product.id);
-          // window.location.href = checkoutLink.url;
-          window.location.href = 'https://rungploy.com'
+          if (isDisabled) {
+            window.location.href = 'https://rungploy.com'
+          } else {
+            const checkoutLink = await createSession(product.stripe_price_id, product.id);
+            window.location.href = checkoutLink.url;
+          }
         } finally {
           loader.classList.remove('loading');
           icon.classList.remove('hide');
