@@ -221,6 +221,13 @@ a {
       justify-content: center;
       gap: 5px;
 
+      &.disabled {
+        background-color: #A0A0A0 !important;
+        box-shadow: none !important;
+        border: 1px solid #999 !important;
+        opacity: 0.8 !important;
+      }
+
       .icon {
         width: 15px;
         height: 15px;
