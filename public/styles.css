@@ -191,27 +191,6 @@ a {
     justify-content: center;
     align-items: center;
 
-    &.disabled {
-      .vat {
-        display: none !important;
-      }
-
-      .product-price {
-        font-style: italic !important;
-
-        &::before {
-          content: "Event Exclusive" !important;
-        }
-      }
-
-      .stripe-link {
-        background-color: #A0A0A0 !important;
-        box-shadow: none !important;
-        border: 1px solid #999 !important;
-        opacity: 0.8 !important;
-      }
-    }
-
     .product-price {
       display: inline-block;
       width: 100%;
@@ -280,6 +259,27 @@ a {
         width: 30px;
         height: 14px;
       }
+    }
+  }
+
+  &.disabled {
+    .vat {
+      display: none !important;
+    }
+
+    .product-price {
+      font-style: italic !important;
+
+      &::before {
+        content: "Event Exclusive" !important;
+      }
+    }
+
+    .stripe-link {
+      background-color: #A0A0A0 !important;
+      box-shadow: none !important;
+      border: 1px solid #999 !important;
+      opacity: 0.8 !important;
     }
   }
 }
