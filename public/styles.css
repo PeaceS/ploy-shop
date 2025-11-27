@@ -94,13 +94,12 @@ a {
     }
 
     border: 3px solid #fff;
-    background-color: #ffcd05;
     background-image: repeating-linear-gradient(
         130deg,              /* 45 degree angle for diagonal */
         #ffffff 0,          /* White, starts at 0% */
         #ffffff 3px,        /* White, ends at 1px (thin line) */
-        #ffcd05 1px,        /* Yellow, starts at 1px */
-        #ffcd05 10px        /* Yellow, ends at 10px (width of the stripe) */
+        #FFEA99 1px,        /* Yellow, starts at 1px */
+        #FFEA99 10px        /* Yellow, ends at 10px (width of the stripe) */
     );
 
     button {
@@ -118,7 +117,6 @@ a {
       color: #333; /* Dark gray/charcoal text color */
 
       /* Border & Background */
-      background-color: transparent;
       border: 1px solid #333; /* 1px thin border in dark gray */
       border-radius: 4px; /* Slightly rounded corners */
 
@@ -198,9 +196,9 @@ a {
       width: 100%;
       font-weight: 600;
 
-      &::before {
+      /* &::before {
         content: "€";
-      }
+      } */
     }
 
     .vat {

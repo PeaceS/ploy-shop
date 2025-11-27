@@ -61,7 +61,7 @@ async function fetchProducts() {
       descriptionDiv.textContent = product.description;
 
       priceDiv = productDiv.querySelector('.product-price');
-      priceDiv.textContent = product.price;
+      // priceDiv.textContent = product.price;
 
       const stripeLink = productDiv.querySelector('.stripe-link');
       stripeLink.addEventListener('click', async (event) => {
@@ -73,8 +73,9 @@ async function fetchProducts() {
         loader.classList.add('loading');
         icon.classList.add('hide');
         try {
-          const checkoutLink = await createSession(product.stripe_price_id, product.id);
-          window.location.href = checkoutLink.url;
+          // const checkoutLink = await createSession(product.stripe_price_id, product.id);
+          // window.location.href = checkoutLink.url;
+          window.location.href = 'https://rungploy.com'
         } finally {
           loader.classList.remove('loading');
           icon.classList.remove('hide');
